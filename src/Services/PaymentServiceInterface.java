@@ -44,15 +44,13 @@ public interface PaymentServiceInterface {
      * @param id
      * @return
      */
-    ArrayList<ServiceModel> getAppointmentServiceByAppointmentID(int id);
-
     /**
      * get customer info
      *
      * @param nic
      * @return
      */
-    Customer getCustomerInfoByNIC(int nic);
+    Customer getCustomerInfoByCID(int nic);
 
     /**
      * get next invoice number

@@ -15,6 +15,15 @@ public class Customer {
     private String lname;
     private String address;
     private String phone;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNic() {
         return nic;
@@ -55,4 +64,10 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" + "nic=" + nic + ", fname=" + fname + ", lname=" + lname + ", address=" + address + ", phone=" + phone + '}';
+    }
+    
 }

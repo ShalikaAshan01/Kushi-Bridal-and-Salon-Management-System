@@ -96,7 +96,6 @@
             <Font size="22.0" />
          </font>
       </JFXButton>
-      <StackPane fx:id="stackPane" layoutX="633.0" layoutY="266.0" prefHeight="44.0" prefWidth="292.0" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="633.0" AnchorPane.rightAnchor="435.0" AnchorPane.topAnchor="266.0" />
             <JFXTreeTableView fx:id="tableAppointment" layoutX="18.0" layoutY="220.0" minWidth="424.0" prefHeight="416.0" prefWidth="555.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="220.0">
    <columns>
       <TreeTableColumn fx:id="columnAID" prefWidth="70.0" text="ID" />
@@ -154,6 +153,7 @@
             <ToggleGroup fx:id="installment" />
          </toggleGroup>
       </JFXRadioButton>
+      <StackPane fx:id="stackPane" layoutX="633.0" layoutY="266.0" prefHeight="44.0" prefWidth="292.0" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="633.0" AnchorPane.rightAnchor="435.0" AnchorPane.topAnchor="266.0" />
       <Label fx:id="remPay" layoutX="648.0" layoutY="488.0" text="Remaining Payment:" textFill="WHITE">
          <font>
             <Font size="15.0" />

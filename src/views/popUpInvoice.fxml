@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.PopUpInvoiceController">
+   <children>
+      <JFXTreeTableView fx:id="paymentTable" layoutX="40.0" layoutY="14.0" prefHeight="332.0" prefWidth="720.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="13.0">
+        <columns>
+          <TreeTableColumn fx:id="colpayID" prefWidth="100" text="Payment id" />
+          <TreeTableColumn fx:id="colfname" prefWidth="100" text="First Name" />
+          <TreeTableColumn fx:id="collname" prefWidth="100" text="Last Name" />
+          <TreeTableColumn fx:id="colappointmentID" prefWidth="100" text="Appointment ID" />
+          <TreeTableColumn fx:id="coldate" prefWidth="100" text="Date" />
+          <TreeTableColumn fx:id="coltime" prefWidth="100" sortable="false" text="Time" />
+          <TreeTableColumn fx:id="coltotal" prefWidth="100" text="Total" />
+        </columns>
+      </JFXTreeTableView>
+      <JFXTextField fx:id="txtKey" layoutX="625.0" layoutY="361.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="625.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="361.0" />  
+   </children>
+</AnchorPane>

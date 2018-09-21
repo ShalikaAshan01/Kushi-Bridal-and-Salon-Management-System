@@ -21,12 +21,14 @@ public class AppointmentforTable extends RecursiveTreeObject<AppointmentforTable
     public final SimpleStringProperty packageName;
     
     public AppointmentforTable(Appointment appointment){
-        aid = new SimpleStringProperty(String.valueOf(appointment.getAid()));
-        fname = new SimpleStringProperty(appointment.getFname());
-        lname = new SimpleStringProperty(appointment.getLname());
-        aDate = new SimpleStringProperty(String.valueOf(appointment.getaDate()));
-        aTime = new SimpleStringProperty(appointment.getaTime());
-        packageName = new SimpleStringProperty(appointment.getPackageName());
+        aid = new SimpleStringProperty(String.valueOf(appointment.getAppointmentId()));
+        String name = appointment.getCustomerName();
+        String split[] = name.split(" ");
+        fname = new SimpleStringProperty(split[0]);
+        lname = new SimpleStringProperty(split[1]);
+        aDate = new SimpleStringProperty(String.valueOf(appointment.getDate()));
+        aTime = new SimpleStringProperty(appointment.getTime());
+        packageName = new SimpleStringProperty(appointment.getPackages());
     }
 
     public String getAid() {

@@ -15,8 +15,10 @@ import java.sql.SQLException;
  */
 public class DBConnection {
 
-    private final static String DBNAME = "SalonManagementSystem.sqlite";
+//    private final static String DBNAME = "SalonManagementSystem.sqlite";
+    
     private static Connection connection;
+    private final static String DBNAME="kushisalon.db";
 
     private DBConnection() {
     }

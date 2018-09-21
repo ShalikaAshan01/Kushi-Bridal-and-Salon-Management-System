@@ -39,8 +39,8 @@ public class PaymentService implements PaymentServiceInterface {
         int affectedRow = 0;
         String query = "INSERT INTO "
                 + CommonUtils.TABLE_PAYMENT
-                + "(" + CommonUtils.COLUMN_CUSTOMERID + ","
-                + CommonUtils.COLUMN_APPOINTMENTID + ","
+                + "(" + CommonUtils.COLUMN_PAYMENTCID + ","
+                + CommonUtils.COLUMN_PAYMENTAID + ","
                 + CommonUtils.COLUMN_PAYMENTDATE + ","
                 + CommonUtils.COLUMN_PAYMENTTIME + ","
                 + CommonUtils.COLUMN_TOTAL + ")"
@@ -91,11 +91,12 @@ public class PaymentService implements PaymentServiceInterface {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Appointment appointment = new Appointment();
-                appointment.setAid(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
-                appointment.setaDate(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTDATE));
-                appointment.setaTime(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTTIME));
-                appointment.setCid(resultSet.getInt(CommonUtils.COLUMN_CUSTOMERID));
-                appointment.setApackage(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTPACKAGE));
+                appointment.setAppointmentId(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
+                appointment.setDate(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTDATE));
+                appointment.setTime(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTTIME));
+                appointment.setCustomerID(resultSet.getInt(CommonUtils.COLUMN_CUSTOMERIDINAPPOINTMENT));
+                appointment.setPackages(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTPACKAGE));
+                appointment.setService(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTSERVICE));
                 appointments.add(appointment);
             }
         } catch (SQLException | ClassNotFoundException e) {
@@ -133,22 +134,19 @@ public class PaymentService implements PaymentServiceInterface {
         try {
             connection = DBConnection.getDBConnection();
             String query = "SELECT * FROM "
-                    + CommonUtils.TABLE_APPOINTMENT + " a,"
-                    + CommonUtils.TABLE_PACKAGE + " p "
-                    + "where a." + CommonUtils.COLUMN_APPOINTMENTID + "=? AND"
-                    + " p." + CommonUtils.COLUMN_PACKAGEID
-                    + "=a." + CommonUtils.COLUMN_APPOINTMENTPACKAGE;
+                    + CommonUtils.TABLE_APPOINTMENT + " a "
+                    + "where a." + CommonUtils.COLUMN_APPOINTMENTID + "=?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                appointment.setAid(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
-                appointment.setaDate(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTDATE));
-                appointment.setaTime(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTTIME));
-                appointment.setCid(resultSet.getInt(CommonUtils.COLUMN_CUSTOMERID));
-                appointment.setApackage(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTPACKAGE));
-                appointment.setPackageName(resultSet.getString(CommonUtils.COLUMN_PACKAGENAME));
-                appointment.total = resultSet.getInt(CommonUtils.COLUMN_PRODUCTPRICE);
+                appointment.setAppointmentId(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
+                appointment.setDate(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTDATE));
+                appointment.setTime(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTTIME));
+                appointment.setCustomerID(resultSet.getInt(CommonUtils.COLUMN_CUSTOMERIDINAPPOINTMENT));
+                appointment.setPackages(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTPACKAGE));
+                appointment.setService(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTSERVICE));
+                appointment.setTotal(resultSet.getDouble(CommonUtils.COLUMN_APPOINTMENTTOTAL));
                 return appointment;
             } else {
                 return null;
@@ -178,25 +176,25 @@ public class PaymentService implements PaymentServiceInterface {
     /**
      * get customer info
      *
-     * @param nic
+     * @param cid
      * @return
      */
     @Override
-    public Customer getCustomerInfoByNIC(int nic) {
+    public Customer getCustomerInfoByCID(int cid) {
         Customer customer = new Customer();
         try {
             connection = DBConnection.getDBConnection();
             String query = "Select * from "
-                    + CommonUtils.TABLE_CUSTOMER + " c,"
-                    + CommonUtils.TABLE_CusPhoneNo + " cp "
+                    + CommonUtils.TABLE_CUSTOMER + " c "
                     + "where "
-                    + "c." + CommonUtils.COLUMN_CUSTOMERNIC
-                    + " =? AND cp."
-                    + CommonUtils.COLUMN_CUSTOMERNIC
-                    + " =c."
-                    + CommonUtils.COLUMN_CUSTOMERNIC;
+                    + "c." + CommonUtils.COLUMN_CUSTOMERID
+                    + " =? ";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, nic);
+            String id=String.valueOf(cid);
+            if(cid <100)
+                id="00"+cid;
+
+            preparedStatement.setString(1, id);
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
@@ -204,6 +202,7 @@ public class PaymentService implements PaymentServiceInterface {
                 customer.setLname(resultSet.getString(CommonUtils.COLUMN_CUSTOMERLNAME));
                 customer.setAddress(resultSet.getString(CommonUtils.COLUMN_CUSTOMERADDRESS));
                 customer.setNic(resultSet.getString(CommonUtils.COLUMN_CUSTOMERNIC));
+                customer.setId(Integer.parseInt(resultSet.getString(CommonUtils.COLUMN_CUSTOMERID)));
                 customer.setPhone(resultSet.getString(CommonUtils.COLUMN_CUSTOMERPHONENUMBER));
                 return customer;
             } else {
@@ -229,63 +228,6 @@ public class PaymentService implements PaymentServiceInterface {
         }
         return customer;
     }
-
-    /**
-     * get appointment's services
-     *
-     * @param id
-     * @return
-     */
-    @Override
-    public ArrayList<ServiceModel> getAppointmentServiceByAppointmentID(int id) {
-        ArrayList<ServiceModel> serviceList = new ArrayList<>();
-        try {
-            connection = DBConnection.getDBConnection();
-            String query = "select s."
-                    + CommonUtils.COLUMN_SERVICENAME
-                    + ","
-                    + "s."
-                    + CommonUtils.COLUMN_SERVICEPRICE
-                    + " from "
-                    + CommonUtils.TABLE_SERVICE
-                    + " s, "
-                    + CommonUtils.TABLE_APPOINTMENTSERVICE
-                    + " a where a."
-                    + CommonUtils.COLUMN_APPOINTMENTID
-                    + " = ? and a."
-                    + CommonUtils.COLUMN_SERVICEID
-                    + "=s."
-                    + CommonUtils.COLUMN_SERVICEID;
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                ServiceModel services = new ServiceModel();
-                services.setsName(resultSet.getString(CommonUtils.COLUMN_SERVICENAME));
-                services.setsPrice(resultSet.getDouble(CommonUtils.COLUMN_SERVICEPRICE));
-                serviceList.add(services);
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (!preparedStatement.isClosed()) {
-                    preparedStatement.close();
-                }
-                if (!connection.isClosed()) {
-                    connection.close();
-                }
-
-                if (!resultSet.isClosed()) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                log.log(Level.SEVERE, e.getMessage());
-            }
-        }
-        return serviceList;
-    }
-
     /**
      * get next invoice number
      *
@@ -338,7 +280,7 @@ public class PaymentService implements PaymentServiceInterface {
                 + CommonUtils.COLUMN_PAYMENTID + ","
                 + CommonUtils.COLUMN_CUSTOMERFNAME + ","
                 + CommonUtils.COLUMN_CUSTOMERLNAME + ","
-                + CommonUtils.COLUMN_APPOINTMENTID + ","
+                + CommonUtils.COLUMN_PAYMENTAID + ","
                 + CommonUtils.COLUMN_PAYMENTDATE + ","
                 + CommonUtils.COLUMN_PAYMENTTIME + ","
                 + CommonUtils.COLUMN_APPOINTMENTTOTAL
@@ -347,9 +289,9 @@ public class PaymentService implements PaymentServiceInterface {
                 + " p,"
                 + CommonUtils.TABLE_CUSTOMER
                 + " c where p."
-                + CommonUtils.COLUMN_CUSTOMERID
+                + CommonUtils.COLUMN_PAYMENTCID
                 + "= c."
-                + CommonUtils.COLUMN_CUSTOMERNIC
+                + CommonUtils.COLUMN_CUSTOMERID
                 + " order by "
                 + CommonUtils.COLUMN_PAYMENTID
                 + " desc";
@@ -362,7 +304,7 @@ public class PaymentService implements PaymentServiceInterface {
                 payment.setPayid(resultSet.getInt(CommonUtils.COLUMN_PAYMENTID));
                 payment.setFname(resultSet.getString(CommonUtils.COLUMN_CUSTOMERFNAME));
                 payment.setLname(resultSet.getString(CommonUtils.COLUMN_CUSTOMERLNAME));
-                payment.setAid(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
+                payment.setAid(resultSet.getInt(CommonUtils.COLUMN_PAYMENTAID));
                 payment.setPayDate(resultSet.getString(CommonUtils.COLUMN_PAYMENTDATE));
                 payment.setPayTime(resultSet.getString(CommonUtils.COLUMN_PAYMENTTIME));
                 payment.setTotal(resultSet.getDouble(CommonUtils.COLUMN_APPOINTMENTTOTAL));
@@ -414,11 +356,11 @@ public class PaymentService implements PaymentServiceInterface {
                 + " p,"
                 + CommonUtils.TABLE_CUSTOMER
                 + " c where p."
-                + CommonUtils.COLUMN_CUSTOMERID
+                + CommonUtils.COLUMN_PAYMENTCID
                 + "= c."
-                + CommonUtils.COLUMN_CUSTOMERNIC
+                + CommonUtils.COLUMN_CUSTOMERID
                 + " and p."
-                + CommonUtils.COLUMN_CUSTOMERID + " = ?";
+                + CommonUtils.COLUMN_PAYMENTCID + " = ?";
         try {
             connection = DBConnection.getDBConnection();
             preparedStatement = connection.prepareStatement(query);
@@ -467,13 +409,13 @@ public class PaymentService implements PaymentServiceInterface {
 
         String query = "select "
                 + CommonUtils.COLUMN_PAYMENTID + ","
-                + CommonUtils.COLUMN_APPOINTMENTID + ","
+                + CommonUtils.COLUMN_PAYMENTAID + ","
                 + CommonUtils.COLUMN_PAYMENTDATE + ","
                 + CommonUtils.COLUMN_PAYMENTTIME + ","
                 + CommonUtils.COLUMN_APPOINTMENTTOTAL
                 + " from "
                 + CommonUtils.TABLE_PAYMENT
-                + " where " + CommonUtils.COLUMN_APPOINTMENTID + " = ?";
+                + " where " + CommonUtils.COLUMN_PAYMENTAID + " = ?";
         try {
             connection = DBConnection.getDBConnection();
             preparedStatement = connection.prepareStatement(query);
@@ -570,7 +512,7 @@ public class PaymentService implements PaymentServiceInterface {
                     + " set "
                     + CommonUtils.COLUMN_REMAINGPAYMENT
                     + "= ? where "
-                    + CommonUtils.COLUMN_APPOINTMENTID
+                    + CommonUtils.COLUMN_PAYMENTAID
                     + "=?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setDouble(1, remaining);
@@ -644,13 +586,13 @@ public class PaymentService implements PaymentServiceInterface {
 
         String query = "select "
                 + CommonUtils.COLUMN_PAYMENTID + ","
-                + CommonUtils.COLUMN_APPOINTMENTID + ","
+                + CommonUtils.COLUMN_PAYMENTAID + ","
                 + CommonUtils.COLUMN_PAYMENTDATE + ","
                 + CommonUtils.COLUMN_PAYMENTTIME + ","
                 + CommonUtils.COLUMN_APPOINTMENTTOTAL
                 + " from "
                 + CommonUtils.TABLE_PAYMENT
-                + " where " + CommonUtils.COLUMN_APPOINTMENTID + " = ?";
+                + " where " + CommonUtils.COLUMN_PAYMENTAID + " = ?";
         try {
             connection = DBConnection.getDBConnection();
             preparedStatement = connection.prepareStatement(query);
@@ -697,27 +639,27 @@ public class PaymentService implements PaymentServiceInterface {
                     + CommonUtils.COLUMN_CUSTOMERFNAME
                     + ",c."
                     + CommonUtils.COLUMN_CUSTOMERLNAME
-                    + ",p."
-                    + CommonUtils.COLUMN_PACKAGENAME
+//                    + ",p."
+//                    + CommonUtils.COLUMN_APPOINTMENTPACKAGE
+//                    +",p."
+//                    +CommonUtils.COLUMN_APPOINTMENTSERVICE
                     + ",a."
                     + CommonUtils.COLUMN_APPOINTMENTDATE
                     + ",a."
                     + CommonUtils.COLUMN_APPOINTMENTTIME
+                    + ",a."
+                    +CommonUtils.COLUMN_APPOINTMENTPACKAGE
                     + " from "
                     + CommonUtils.TABLE_APPOINTMENT
                     + " a,"
                     + CommonUtils.TABLE_CUSTOMER
-                    + " c,"
-                    + CommonUtils.TABLE_PACKAGE
-                    + " p "
+                    + " c "
+//                    + CommonUtils.TABLE_PACKAGE
+//                    + " p "
                     + "where c."
-                    + CommonUtils.COLUMN_CUSTOMERNIC
-                    + " = a."
                     + CommonUtils.COLUMN_CUSTOMERID
-                    + " and p."
-                    + CommonUtils.COLUMN_PACKAGEID
-                    + "=a."
-                    + CommonUtils.COLUMN_APPOINTMENTPACKAGE
+                    + " = a."
+                    + CommonUtils.COLUMN_CUSTOMERIDINAPPOINTMENT
                     + " order by a."
                     + CommonUtils.COLUMN_APPOINTMENTID
                     + " desc";
@@ -727,12 +669,12 @@ public class PaymentService implements PaymentServiceInterface {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Appointment appointment = new Appointment();
-                appointment.setAid(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
-                appointment.setFname(resultSet.getString(CommonUtils.COLUMN_CUSTOMERFNAME));
-                appointment.setLname(resultSet.getString(CommonUtils.COLUMN_CUSTOMERLNAME));
-                appointment.setPackageName(resultSet.getString(CommonUtils.COLUMN_PACKAGENAME));
-                appointment.setaDate(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTDATE));
-                appointment.setaTime(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTTIME));
+                appointment.setAppointmentId(resultSet.getInt(CommonUtils.COLUMN_APPOINTMENTID));
+                appointment.setCustomerName(resultSet.getString(CommonUtils.COLUMN_CUSTOMERFNAME)+" " + 
+                resultSet.getString(CommonUtils.COLUMN_CUSTOMERLNAME));
+                appointment.setPackages(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTPACKAGE));
+                appointment.setDate(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTDATE));
+                appointment.setTime(resultSet.getString(CommonUtils.COLUMN_APPOINTMENTTIME));
                 appointmentList.add(appointment);
 
             }
@@ -767,9 +709,11 @@ public class PaymentService implements PaymentServiceInterface {
                     + " from "
                     + CommonUtils.TABLE_CUSTOMER
                     + " where "
-                    + CommonUtils.COLUMN_CUSTOMERNIC
+                    + CommonUtils.COLUMN_CUSTOMERID
                     + " = ?";
             preparedStatement = connection.prepareStatement(query);
+            if(Integer.parseInt(nic)<100)
+                nic = "00"+nic;
             preparedStatement.setString(1, nic);
             resultSet = preparedStatement.executeQuery();
 
@@ -830,6 +774,72 @@ public class PaymentService implements PaymentServiceInterface {
             }
         }
         return result;    
+    }
+    public int getServiceIDBYServiceNAME(String name){
+        try {
+            connection = DBConnection.getDBConnection();
+            String query = "selct " + CommonUtils.COLUMN_SERVICEID + 
+                    " from " + CommonUtils.TABLE_SERVICE + 
+                    " where " + CommonUtils.COLUMN_SERVICENAME + "=?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            resultSet =  preparedStatement.executeQuery();
+            if(resultSet.next())
+                return resultSet.getInt(CommonUtils.COLUMN_SERVICEID);
+            
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (!preparedStatement.isClosed()) {
+                    preparedStatement.close();
+                }
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
+
+                if (!resultSet.isClosed()) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                log.log(Level.SEVERE, e.getMessage());
+            }
+        }
+        
+        return 0;
+    }
+       public int getPackageIDBYPackageNAME(String name){
+        try {
+            connection = DBConnection.getDBConnection();
+            String query = "selct " + CommonUtils.COLUMN_PACKAGEID + 
+                    " from " + CommonUtils.TABLE_PACKAGE + 
+                    " where " + CommonUtils.COLUMN_PACKAGEID + "=?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            resultSet =  preparedStatement.executeQuery();
+            if(resultSet.next())
+                return resultSet.getInt(CommonUtils.COLUMN_PACKAGEID);
+            
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (!preparedStatement.isClosed()) {
+                    preparedStatement.close();
+                }
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
+
+                if (!resultSet.isClosed()) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                log.log(Level.SEVERE, e.getMessage());
+            }
+        }
+        
+        return 0;
     }
 
 }

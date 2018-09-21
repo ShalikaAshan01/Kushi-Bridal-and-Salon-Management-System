@@ -260,7 +260,6 @@ public class createInvoiceController implements Initializable {
                     String host = "smtp.gmail.com";
                     String user = "noreplykushisalon@gmail.com";
                     String pass = "JOa0eO4Gtqn0";
-                    System.out.println("nic: " + temp);
                     String to = paymentService.getCustomerEmail(String.valueOf(temp));
                     String from = "noreply@kushisalon";
                     String subject = "Your Payment has Succeessfully paid";
@@ -325,7 +324,7 @@ public class createInvoiceController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Cannot send email");
                     alert.setHeaderText("");
-                    alert.setContentText("Email not sended");
+                    alert.setContentText("Email not sended,but payment added into database");
                     alert.showAndWait();
                     System.out.println(ex);
 
@@ -399,14 +398,10 @@ public class createInvoiceController implements Initializable {
         ArrayList<Appointment> totable = new ArrayList<>();
         for (Appointment temp : list) {
             double tempTotal = 0;
-            Appointment AppointmentTemp = paymentService.getAppoimentByID(temp.getAid());
-            ArrayList<ServiceModel> servicesWithPrice = new ArrayList<>();
-            servicesWithPrice = paymentService.getAppointmentServiceByAppointmentID(temp.getAid());
-            tempTotal = AppointmentTemp.total;
-            for (ServiceModel tempService : servicesWithPrice) {
-                tempTotal += tempService.getsPrice();
-            }
-            PaymentModel payInfo = paymentService.getPaymentInfoByAppointmentID(temp.getAid());
+            Appointment AppointmentTemp = paymentService.getAppoimentByID(temp.getAppointmentId());
+            tempTotal = AppointmentTemp.getTotal();
+            
+            PaymentModel payInfo = paymentService.getPaymentInfoByAppointmentID(temp.getAppointmentId());
             if (payInfo.getTotal() >= tempTotal) {
                 continue;
             }
@@ -422,14 +417,9 @@ public class createInvoiceController implements Initializable {
         ArrayList<Appointment> totable = new ArrayList<>();
         for (Appointment temp : list) {
             double tempTotal = 0;
-            Appointment AppointmentTemp = paymentService.getAppoimentByID(temp.getAid());
-            ArrayList<ServiceModel> servicesWithPrice = new ArrayList<>();
-            servicesWithPrice = paymentService.getAppointmentServiceByAppointmentID(temp.getAid());
-            tempTotal = AppointmentTemp.total;
-            for (ServiceModel tempService : servicesWithPrice) {
-                tempTotal += tempService.getsPrice();
-            }
-            PaymentModel payInfo = paymentService.getPaymentInfoByAppointmentID(temp.getAid());
+            Appointment AppointmentTemp = paymentService.getAppoimentByID(temp.getAppointmentId());
+            tempTotal = AppointmentTemp.getTotal();
+            PaymentModel payInfo = paymentService.getPaymentInfoByAppointmentID(temp.getAppointmentId());
             if (payInfo.getTotal() >= tempTotal) {
                 totable.add(temp);
             }
@@ -451,20 +441,17 @@ public class createInvoiceController implements Initializable {
 
             //set text values, based on appointment details
             //get custometr details
-            Customer customer = paymentService.getCustomerInfoByNIC(appointment.getCid());
-            ArrayList<ServiceModel> servicesWithPrice = new ArrayList<>();
-            servicesWithPrice = paymentService.getAppointmentServiceByAppointmentID(appointment.getAid());
+            Customer customer = paymentService.getCustomerInfoByCID(appointment.getCustomerID());
+//            ArrayList<ServiceModel> servicesWithPrice = new ArrayList<>();
+//            servicesWithPrice = paymentService.getAppointmentServiceByAppointmentID(appointment.getAppointmentId());
             customerName.setText(customer.getFname() + " " + customer.getLname());
             customerPhone.setText(customer.getPhone());
             customerAddress.setText(customer.getAddress());
-            nic = Integer.parseInt(customer.getNic());
-            appointmentNumber = appointment.getAid();
-            total = appointment.total;
+            nic = customer.getId();
+            appointmentNumber = appointment.getAppointmentId();
+            total = appointment.getTotal();
             ArrayList<String> services = new ArrayList<>();/*for list view*/
-            for (ServiceModel tempService : servicesWithPrice) {
-                total += tempService.getsPrice();
-                services.add(tempService.getsName());
-            }
+            services.add(appointment.getService());
             listService.getItems().addAll(services);
             appointmentTotal = total;
             grossTotal.setText(String.valueOf(total));
@@ -529,7 +516,7 @@ public class createInvoiceController implements Initializable {
             } else {
                 saveButton.setDisable(false);
             }
-            if (appointment.getApackage() == 2) {
+            if (appointment.getPackages().equalsIgnoreCase("Bridal Pack")) {
                 with.setVisible(true);
                 without.setVisible(true);
             }
@@ -655,8 +642,10 @@ public class createInvoiceController implements Initializable {
     ObservableList<AppointmentforTable> observableListForTAppointment = FXCollections.observableArrayList();
 
     public void setAppointmentTable() {
+        observableListForTAppointment.clear();
         PaymentServiceInterface paymentService = new PaymentService();
-        ArrayList<Appointment> temparrayList = paymentService.getAllAppointments();
+        ArrayList<Appointment> temparrayList = new ArrayList<>();
+        temparrayList = paymentService.getAllAppointments();
         ArrayList<AppointmentforTable> arrayList = new ArrayList<>();
 
         for (Appointment tempAppointment : temparrayList) {
@@ -805,6 +794,7 @@ public class createInvoiceController implements Initializable {
     @FXML
     public void changeTable(ActionEvent event) {
         if (cbPayment.getSelectionModel().getSelectedIndex() == 0) {
+            
             setAppointmentTable();
         }
         if (cbPayment.getSelectionModel().getSelectedIndex() == 1) {
