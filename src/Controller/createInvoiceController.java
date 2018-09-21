@@ -612,6 +612,7 @@ public class createInvoiceController implements Initializable {
 
     public void reset(ActionEvent event) {
         cleanText();
+        tableAppointment.getSelectionModel().clearSelection();
         appointmentNumber = 0;
     }
 
