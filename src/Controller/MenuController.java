@@ -73,34 +73,34 @@ public class MenuController implements Initializable {
             ((Node) (event.getSource())).getScene().getWindow().hide();
 
             //handle close button(X)
-            stage.setOnHiding(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
-                                Stage stage = new Stage();
-                                //    stage.setAlwaysOnTop(true);
-                                Scene scene = new Scene(root);
-                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
-                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
-                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
-                                stage.setScene(scene);
-                                stage.setTitle(title);
-                                stage.show();
-                            } catch (IOException ex) {
-                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                        }
-                    }
-                    );
-
-                }
-            }
-            );
+//            stage.setOnHiding(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
+//                                Stage stage = new Stage();
+//                                //    stage.setAlwaysOnTop(true);
+//                                Scene scene = new Scene(root);
+//                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+//                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+//                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+//                                stage.setScene(scene);
+//                                stage.setTitle(title);
+//                                stage.show();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//
+//                        }
+//                    }
+//                    );
+//
+//                }
+//            }
+//            );
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,34 +123,34 @@ public class MenuController implements Initializable {
 
             
             //handle close button(X)
-            stage.setOnHiding(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
-                                Stage stage = new Stage();
-                                //    stage.setAlwaysOnTop(true);
-                                Scene scene = new Scene(root);
-                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
-                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
-                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
-                                stage.setScene(scene);
-                                stage.setTitle(title);
-                                stage.show();
-                            } catch (IOException ex) {
-                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                        }
-                    }
-                    );
-
-                }
-            }
-            );
+//            stage.setOnHiding(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
+//                                Stage stage = new Stage();
+//                                //    stage.setAlwaysOnTop(true);
+//                                Scene scene = new Scene(root);
+//                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+//                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+//                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+//                                stage.setScene(scene);
+//                                stage.setTitle(title);
+//                                stage.show();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//
+//                        }
+//                    }
+//                    );
+//
+//                }
+//            }
+//            );
 
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);

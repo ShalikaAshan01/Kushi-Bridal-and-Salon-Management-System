@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="246.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PopUpInstallmentPaymentController">
+   <children>
+      <JFXTreeTableView fx:id="tableInstallment" layoutX="76.0" layoutY="29.0" prefHeight="188.0" prefWidth="412.0" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="76.0">
+         <columns>
+            <TreeTableColumn fx:id="columnID" prefWidth="100.0" text="Payment ID" />
+            <TreeTableColumn fx:id="columnDate" prefWidth="200.0" text="Date" />
+            <TreeTableColumn fx:id="columnAmount" prefWidth="100.0" text="Amount" />
+         </columns>
+      </JFXTreeTableView>
+   </children>
+</AnchorPane>

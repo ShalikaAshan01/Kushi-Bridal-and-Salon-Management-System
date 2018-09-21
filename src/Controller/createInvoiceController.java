@@ -27,6 +27,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -38,6 +39,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -58,6 +60,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -156,6 +160,8 @@ public class createInvoiceController implements Initializable {
     private final String txtcolor = "yellow";
     public static int appointmentNumber = 0;
     public static int curInvoiceNo = 0;
+    public static final String TITLE = "Kushi Bridal and Beauty Salon";
+
 
     public int getInvoiceNo() {
         return Integer.parseInt(invoiceNo.getText().substring(11));
@@ -551,6 +557,7 @@ public class createInvoiceController implements Initializable {
         invoiceNo.setText("Invoice No:" + id);
     }
 
+    @FXML
     public void setChange(ActionEvent actionEvent) {
         double cash, netAmount;
         if (this.cash.getText() != null && !this.cash.getText().isEmpty()
@@ -588,6 +595,7 @@ public class createInvoiceController implements Initializable {
         }
     }
 
+    @FXML
     public void onClickinstallment(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Installment");
@@ -604,12 +612,14 @@ public class createInvoiceController implements Initializable {
 
     }
 
+    @FXML
     public void onClickWithoutInstallment(ActionEvent event) {
         total = total * 2;
         grossTotal.setText(String.valueOf(total));
         netAmount.setText(String.valueOf(total));
     }
 
+    @FXML
     public void reset(ActionEvent event) {
         cleanText();
         tableAppointment.getSelectionModel().clearSelection();
@@ -678,9 +688,10 @@ public class createInvoiceController implements Initializable {
             stage.setAlwaysOnTop(true);
             Scene scene = new Scene(root);
             //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
-            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
             //stage.initStyle(StageStyle.UNDECORATED);//hide all button
             stage.setScene(scene);
+            stage.setTitle(TITLE);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(btnView.getScene().getWindow());
             stage.showAndWait();
@@ -765,6 +776,7 @@ public class createInvoiceController implements Initializable {
         }
     }
 
+    @FXML
     public void changeTable(ActionEvent event) {
         if (cbPayment.getSelectionModel().getSelectedIndex() == 0) {
             setAppointmentTable();
@@ -788,6 +800,57 @@ public class createInvoiceController implements Initializable {
                 tempTableList.add(appointmentforTable);
             }
             observableListForTAppointment.addAll(tempTableList);
+        }
+    }
+
+    @FXML
+    private void viewPaymentUI(ActionEvent event) {
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/viewInvoices.fxml"));
+            Stage stage = new Stage();
+            //    stage.setAlwaysOnTop(true);
+            Scene scene = new Scene(root);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setScene(scene);
+            stage.setTitle(TITLE);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+
+            
+            //handle close button(X)
+            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
+                                Stage stage = new Stage();
+                                //    stage.setAlwaysOnTop(true);
+                                Scene scene = new Scene(root);
+                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+                                stage.setScene(scene);
+                                stage.setTitle(TITLE);
+                                stage.show();
+                            } catch (IOException ex) {
+                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+
+                        }
+                    }
+                    );
+
+                }
+            }
+            );
+
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
