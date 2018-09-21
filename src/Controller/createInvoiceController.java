@@ -172,6 +172,8 @@ public class createInvoiceController implements Initializable {
 
     @FXML
     private Button btnSuppllierUI;
+    @FXML
+    private Button btnViewPay;
 
     @FXML
     private Button btnHomeUI;
@@ -214,7 +216,9 @@ public class createInvoiceController implements Initializable {
         btnView.setTooltip(new Tooltip("View Installments"));
         listService.setTooltip(new Tooltip("Customer's Services"));
         tableAppointment.setTooltip(new Tooltip("Appointments"));
+        btnViewPay.setTooltip(new Tooltip("View Payments"));
         btnView.setCursor(Cursor.HAND);
+        setNavigationbarToolTip();
     }
 
     /**
@@ -826,7 +830,7 @@ public class createInvoiceController implements Initializable {
     }
 
     @FXML
-    private void viewPaymentUI(ActionEvent event) {
+    public void viewPaymentUI(ActionEvent event) {
         try {
             AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/viewInvoices.fxml"));
             Stage stage = new Stage();
@@ -914,5 +918,17 @@ public class createInvoiceController implements Initializable {
     @FXML
     public void viewSupplierUIb(ActionEvent event) {
 
+    }
+    public void setNavigationbarToolTip(){
+        btnAppointmentUI.setTooltip(new Tooltip("Appointment Management System"));
+        btnCustomerUI.setTooltip(new Tooltip("Customer Management System"));
+        btnEmployeeUI.setTooltip(new Tooltip("Employee Management System"));
+        btnStockUI.setTooltip(new Tooltip("Stock Management System"));
+        btnPackageUI.setTooltip(new Tooltip("Package Management System"));
+        btnPaymentUI.setTooltip(new Tooltip("Payment Management System"));
+        btnSuppllierUI.setTooltip(new Tooltip("Supplier Management System"));
+        btnHomeUI.setTooltip(new Tooltip("Home"));
+
+                
     }
 }

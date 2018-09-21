@@ -181,7 +181,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <JFXButton buttonType="RAISED" layoutX="698.0" layoutY="140.0" onAction="#viewPaymentUI" prefHeight="45.0" prefWidth="182.0" ripplerFill="RED" style="-fx-background-color: #00008B;" text="VIEW PAYMENTS" textFill="WHITE">
+      <JFXButton fx:id="btnViewPay" buttonType="RAISED" layoutX="698.0" layoutY="140.0" onAction="#viewPaymentUI" prefHeight="45.0" prefWidth="182.0" ripplerFill="RED" style="-fx-background-color: #00008B;" text="VIEW PAYMENTS" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>

@@ -39,6 +39,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -124,6 +125,12 @@ public class ViewInvoicesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadViews();
+        setNavigationbarToolTip();
+        btnDelete.setTooltip(new Tooltip("Delete selected payment"));
+        report.setTooltip(new Tooltip("Genarate Report"));
+        btnViewSummary.setTooltip(new Tooltip("View Payments Summary"));
+        btnAddPaymentUI.setTooltip(new Tooltip("Add new Payment"));
+        
     }
 
     public void loadViews() {
@@ -261,23 +268,6 @@ public class ViewInvoicesController implements Initializable {
             sereis.getData().add(new XYChart.Data<>("Saturday", sat));
             barChart.getData().clear();
             barChart.getData().add(sereis);
-
-            //pie chart
-//            pielist = FXCollections.observableArrayList(
-//                    new PieChart.Data("Sunday", sun),
-//                    new PieChart.Data("Monday", mon),
-//                    new PieChart.Data("Tuesday", tue),
-//                    new PieChart.Data("Wednesday", wen),
-//                    new PieChart.Data("Thursday", thu),
-//                    new PieChart.Data("Friday", fri),
-//                    new PieChart.Data("Saturday", sat)
-//            );
-//            for (PieChart.Data data : pieChart.getData()) {
-//
-//            }
-//            pieChart.getData().clear();
-//            pieChart.setData(pielist);
-//            pieChart.setLegendSide(Side.LEFT);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -415,5 +405,17 @@ public class ViewInvoicesController implements Initializable {
     @FXML
     public void viewSupplierUIb(ActionEvent event) {
 
+    }
+    private void setNavigationbarToolTip(){
+        btnAppointmentUI.setTooltip(new Tooltip("Appointment Management System"));
+        btnCustomerUI.setTooltip(new Tooltip("Customer Management System"));
+        btnEmployeeUI.setTooltip(new Tooltip("Employee Management System"));
+        btnStockUI.setTooltip(new Tooltip("Stock Management System"));
+        btnPackageUI.setTooltip(new Tooltip("Package Management System"));
+        btnPaymentUI.setTooltip(new Tooltip("Payment Management System"));
+        btnSuppllierUI.setTooltip(new Tooltip("Supplier Management System"));
+        btnHomeUI.setTooltip(new Tooltip("Home"));
+
+                
     }
 }
