@@ -46,7 +46,7 @@
 				</staticText>
 				<image>
 					<reportElement x="470" y="0" width="81" height="66" uuid="20ef8629-d40e-4412-a867-622ed145d46c"/>
-					<imageExpression><![CDATA["C:\\Users\\Shalika Ashan\\Documents\\NetBeansProjects\\payment\\src\\views\\Reports\\cherry.jpg"]]></imageExpression>
+					<imageExpression><![CDATA["src\\views\\Reports\\cherry.jpg"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>
