@@ -31,10 +31,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -46,6 +45,7 @@ import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.PaymentModel;
 import model.PaymentModelforTable;
 
@@ -77,14 +77,47 @@ public class ViewInvoicesController implements Initializable {
     @FXML
     private BarChart<String, Double> barChart;
     @FXML
-    private PieChart pieChart;
-    @FXML
     private Label invoices;
     @FXML
     private Label income;
+    static double sun = 0, mon = 0, tue = 0, wen = 0, thu = 0, fri = 0, sat = 0, total = 0;
+    static int no = 0;
+
+    @FXML
+    private Button btnDelete;
+
+    @FXML
+    private Button btnStockUI;
+
+    @FXML
+    private Button btnAppointmentUI;
+
+    @FXML
+    private Button btnCustomerUI;
+
+    @FXML
+    private Button btnPackageUI;
+
+    @FXML
+    private Button btnPaymentUI;
+
+    @FXML
+    private Button btnEmployeeUI;
+
+    @FXML
+    private Button btnSuppllierUI;
+
+    @FXML
+    private Button btnHomeUI;
+
+    @FXML
+    private Button btnAddPaymentUI;
+
+    @FXML
+    private Button btnViewSummary;
+
 //    @FXML
 //    private JFXToggleButton inverse;
-
     /**
      * Initializes the controller class.
      */
@@ -92,10 +125,10 @@ public class ViewInvoicesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         loadViews();
     }
-    public void loadViews(){
-        
+
+    public void loadViews() {
+
         //add values to table
-        
         PaymentServiceInterface paymentService = new PaymentService();
         ArrayList<PaymentModel> payments = paymentService.getPaymentInfo();
         ArrayList<PaymentModelforTable> paymentsforTable = new ArrayList<>();
@@ -131,13 +164,14 @@ public class ViewInvoicesController implements Initializable {
         coltime.setStyle("-fx-alignment: CENTER;");
         coltotal.setStyle("-fx-alignment: CENTER;");
         searchPayment();/*filter payments*/
-                //Set bar chart
+        //Set bar chart
         try {
             getChartInfo();
         } catch (ParseException ex) {
             Logger.getLogger(ViewInvoicesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void searchPayment() {
         txtKey.textProperty().addListener(new ChangeListener<String>() {
 
@@ -162,7 +196,8 @@ public class ViewInvoicesController implements Initializable {
             }
         });
     }
-ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
+
+//ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
     public void getChartInfo() throws ParseException {
         PaymentServiceInterface paymentService = new PaymentService();
         ArrayList<PaymentModel> payments = paymentService.getPaymentInfo();
@@ -170,15 +205,21 @@ ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
         Date date = new Date();
         int dayweek;
         Calendar calendar = Calendar.getInstance();
-        double sun = 0, mon = 0, tue = 0, wen = 0, thu = 0, fri = 0, sat = 0, total;
         int i = 0;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        sun = 0;
+        mon = 0;
+        tue = 0;
+        wen = 0;
+        thu = 0;
+        fri = 0;
+        sat = 0;
+        total = 0;
         for (PaymentModel payment : payments) {
             sdate = payment.getPayDate();
             date = dateFormat.parse(sdate);
             calendar.setTime(date);
             dayweek = calendar.get(Calendar.DAY_OF_WEEK);
-
             switch (dayweek) {
                 case 1:
                     sun += payment.getTotal();
@@ -203,8 +244,10 @@ ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
                     break;
             }
         }
+        no =0;
+        no =payments.size();
         total = sun + mon + tue + wen + thu + fri + sat;
-        invoices.setText("No.of Invoice: " + payments.size());
+        invoices.setText("No.of Invoice: " + no);
         income.setText("Total Income: " + total);
         //load barchart
         try {
@@ -220,21 +263,21 @@ ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
             barChart.getData().add(sereis);
 
             //pie chart
-            pielist = FXCollections.observableArrayList(
-                    new PieChart.Data("Sunday", sun),
-                    new PieChart.Data("Monday", mon),
-                    new PieChart.Data("Tuesday", tue),
-                    new PieChart.Data("Wednesday", wen),
-                    new PieChart.Data("Thursday", thu),
-                    new PieChart.Data("Friday", fri),
-                    new PieChart.Data("Saturday", sat)
-            );
-            for (PieChart.Data data : pieChart.getData()) {
-
-            }
-            pieChart.getData().clear();
-            pieChart.setData(pielist);
-            pieChart.setLegendSide(Side.LEFT);
+//            pielist = FXCollections.observableArrayList(
+//                    new PieChart.Data("Sunday", sun),
+//                    new PieChart.Data("Monday", mon),
+//                    new PieChart.Data("Tuesday", tue),
+//                    new PieChart.Data("Wednesday", wen),
+//                    new PieChart.Data("Thursday", thu),
+//                    new PieChart.Data("Friday", fri),
+//                    new PieChart.Data("Saturday", sat)
+//            );
+//            for (PieChart.Data data : pieChart.getData()) {
+//
+//            }
+//            pieChart.getData().clear();
+//            pieChart.setData(pielist);
+//            pieChart.setLegendSide(Side.LEFT);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -251,7 +294,7 @@ ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
         Scene scene = new Scene(root);
         //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
         //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
-        //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+        stage.initStyle(StageStyle.UNDECORATED);//hide all button
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(report.getScene().getWindow());
@@ -260,31 +303,117 @@ ObservableList<PieChart.Data> pielist = FXCollections.observableArrayList();
 
     @FXML
     public void deletePayment(ActionEvent event) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Confirmation");
-        dialog.setHeaderText("Do you realy want to delete this payment?");
-        dialog.setContentText("Please enter CONFIRM to delete this result:");
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            if(result.get().equals("CONFIRM")){
-                PaymentServiceInterface paymentService = new PaymentService();
-                int res = paymentService.deletePaymentByID(Integer.parseInt(paymentTable.getSelectionModel().getSelectedItem().getValue().getPayid()));
-                if(res>0){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Successfully Deleted");
-                    alert.setHeaderText("");
-                    alert.setContentText("Selected result is deleted");
-                    alert.showAndWait();
-                }else{
-                                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("");
-                    alert.setContentText("Cannot Deleted");
-                    alert.showAndWait();
+        if (paymentTable.getSelectionModel().getSelectedItem() != null) {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Confirmation");
+            dialog.setHeaderText("Do you realy want to delete this payment?");
+            dialog.setContentText("Please enter CONFIRM to delete this result:");
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                if (result.get().equals("CONFIRM")) {
+                    PaymentServiceInterface paymentService = new PaymentService();
+                    int res = paymentService.deletePaymentByID(Integer.parseInt(paymentTable.getSelectionModel().getSelectedItem().getValue().getPayid()));
+                    if (res > 0) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Successfully Deleted");
+                        alert.setHeaderText("");
+                        alert.setContentText("Selected result is deleted");
+                        alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("");
+                        alert.setContentText("Cannot Deleted");
+                        alert.showAndWait();
+                    }
                 }
+                loadViews();
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("");
+            alert.setContentText("Please Select a ROW form table view");
+            alert.showAndWait();
+
         }
-        pielist.clear();
-        loadViews();
+//        pielist.clear();
+    }
+
+    @FXML
+    public void viewAddPaymentUI(ActionEvent event) {
+           
+        try {
+             AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/createInvoice.fxml"));
+                        Stage stage = new Stage();
+            //    stage.setAlwaysOnTop(true);
+            Scene scene = new Scene(root);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setScene(scene);
+            stage.setTitle("Kushi Bridal and Beauty Salon");
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(ViewInvoicesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+    }
+
+    @FXML
+    public void viewAppointmentUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewCustomerUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewEmployeeUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewHomeUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewPackageUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewPaymentUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewStockUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewSummary(ActionEvent event) throws IOException {
+                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/popUPSummary.fxml"));
+        Stage stage = new Stage();
+//            stage.setAlwaysOnTop(true);
+        Scene scene = new Scene(root);
+        //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+        stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+        //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(report.getScene().getWindow());
+        stage.showAndWait();
+    }
+
+    @FXML
+    public void viewSupplierUIb(ActionEvent event) {
+
     }
 }

@@ -22,74 +22,6 @@
 
 <AnchorPane id="AnchorPane" minHeight="650.0" minWidth="1360.0" prefHeight="650.0" prefWidth="1360.0" style="-fx-background-color: #1F1C2C;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.createInvoiceController">
     <children>
-      <HBox layoutX="-1.0" layoutY="1.0" prefHeight="48.0" prefWidth="1360.0" spacing="3.0" AnchorPane.bottomAnchor="595.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="7.0">
-         <children>
-            <JFXButton fx:id="home" buttonType="RAISED" mnemonicParsing="false" prefWidth="198.0" style="-fx-background-color: #006400;" text="STOCK" textFill="#f2f2f2">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="appointment" buttonType="RAISED" mnemonicParsing="false" prefWidth="217.0" style="-fx-background-color: #006400;" text="APPOINTMENT" textFill="#fffafa">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="csd" buttonType="RAISED" mnemonicParsing="false" prefWidth="214.0" style="-fx-background-color: #006400;" text="CUSTOMER" textFill="#fffafa">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="qwe" buttonType="RAISED" mnemonicParsing="false" prefWidth="219.0" style="-fx-background-color: #006400;" text="PACKAGES" textFill="#fffafa">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="eer" buttonType="RAISED" mnemonicParsing="false" prefWidth="222.0" style="-fx-background-color: #00008B;" text="PAYEMENT" textFill="#fffafa">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="wewr" buttonType="RAISED" mnemonicParsing="false" prefWidth="219.0" style="-fx-background-color: #006400;" text="EMPLOYEE" textFill="#fffafa">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton fx:id="rre" buttonType="RAISED" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #006400;" text="SUPPLIERS" textFill="#fffafa">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" mnemonicParsing="false" prefWidth="165.0" style="-fx-background-color: #006400;" text="HOME" textFill="#fcf5f5">
-               <font>
-                  <Font size="21.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-         </children>
-      </HBox>
       <Label fx:id="invoiceNo" accessibleRole="PARENT" layoutX="1246.0" layoutY="131.0" text="Invoice No:112" textFill="WHITE" AnchorPane.leftAnchor="1246.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -257,5 +189,73 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
+      <HBox layoutX="18.0" layoutY="21.0" prefHeight="48.0" prefWidth="1360.0" spacing="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <JFXButton fx:id="btnStockUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewStockUIb" prefWidth="198.0" style="-fx-background-color: #006400;" text="STOCK" textFill="#f2f2f2">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnAppointmentUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewAppointmentUIb" prefHeight="45.0" prefWidth="238.0" style="-fx-background-color: #006400;" text="APPOINTMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnCustomerUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewCustomerUIb" prefWidth="214.0" style="-fx-background-color: #006400;" text="CUSTOMER" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnPackageUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewPackageUIb" prefWidth="219.0" style="-fx-background-color: #006400;" text="PACKAGES" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnPaymentUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewPaymentUIb" prefWidth="222.0" style="-fx-background-color: #00008B;" text="PAYEMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnEmployeeUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewEmployeeUIb" prefWidth="219.0" style="-fx-background-color: #006400;" text="EMPLOYEE" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSuppllierUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewSupplierUIb" prefWidth="200.0" style="-fx-background-color: #006400;" text="SUPPLIERS" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnHomeUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewHomeUIb" prefWidth="165.0" style="-fx-background-color: #006400;" text="HOME" textFill="#fcf5f5">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

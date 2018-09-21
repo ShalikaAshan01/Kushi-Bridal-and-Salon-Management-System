@@ -6,15 +6,22 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="302.0" prefWidth="578.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.ReportGenaratePopUpController">
+<AnchorPane id="AnchorPane" prefHeight="303.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ReportGenaratePopUpController">
    <children>
-      <JFXButton layoutX="486.0" layoutY="253.0" onAction="#genarate" text="Yes,Genarate Report" />
-      <JFXButton layoutX="413.0" layoutY="253.0" onAction="#close" text="Close" />
+      <JFXButton layoutX="509.0" layoutY="252.0" onAction="#genarate" prefHeight="34.0" prefWidth="111.0" style="-fx-background-color: #64b5f6;" text="Genarate Report">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <JFXButton layoutX="394.0" layoutY="253.0" onAction="#close" prefHeight="34.0" prefWidth="93.0" style="-fx-background-color: #e57373;" text="Close">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
       <JFXComboBox fx:id="cbReport" layoutX="56.0" layoutY="253.0" promptText="Report Type" />
       <JFXRadioButton fx:id="rbYear" layoutX="56.0" layoutY="136.0" onAction="#onRByear" text="Yearly Report">
          <toggleGroup>

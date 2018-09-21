@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -61,7 +60,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -153,6 +151,31 @@ public class createInvoiceController implements Initializable {
     private Button btnView;
     @FXML
     private JFXTextField txtSearch;
+
+    @FXML
+    private Button btnStockUI;
+
+    @FXML
+    private Button btnAppointmentUI;
+
+    @FXML
+    private Button btnCustomerUI;
+
+    @FXML
+    private Button btnPackageUI;
+
+    @FXML
+    private Button btnPaymentUI;
+
+    @FXML
+    private Button btnEmployeeUI;
+
+    @FXML
+    private Button btnSuppllierUI;
+
+    @FXML
+    private Button btnHomeUI;
+
     private int nic = 0;
     private double appointmentTotal = 0;
     private double total = 0;
@@ -161,7 +184,6 @@ public class createInvoiceController implements Initializable {
     public static int appointmentNumber = 0;
     public static int curInvoiceNo = 0;
     public static final String TITLE = "Kushi Bridal and Beauty Salon";
-
 
     public int getInvoiceNo() {
         return Integer.parseInt(invoiceNo.getText().substring(11));
@@ -181,7 +203,7 @@ public class createInvoiceController implements Initializable {
                 "All Appointment", "Payment Incompleted", "Payments Completed"
         );
         cbPayment.setItems(value);
-        
+
         resetButton.setTooltip(new Tooltip("Reset all fields"));
         saveButton.setTooltip(new Tooltip("Add payment into Database"));
         cbPayment.setTooltip(new Tooltip("Filter table by categories"));
@@ -815,42 +837,82 @@ public class createInvoiceController implements Initializable {
             //stage.initStyle(StageStyle.UNDECORATED);//hide all button
             stage.setScene(scene);
             stage.setTitle(TITLE);
+            stage.setMaximized(true);
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
 
-            
             //handle close button(X)
-            stage.setOnHiding(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
-                                Stage stage = new Stage();
-                                //    stage.setAlwaysOnTop(true);
-                                Scene scene = new Scene(root);
-                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
-                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
-                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
-                                stage.setScene(scene);
-                                stage.setTitle(TITLE);
-                                stage.show();
-                            } catch (IOException ex) {
-                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-
-                        }
-                    }
-                    );
-
-                }
-            }
-            );
-
+//            stage.setOnHiding(new EventHandler<WindowEvent>() {
+//                @Override
+//                public void handle(WindowEvent event) {
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
+//                                Stage stage = new Stage();
+//                                //    stage.setAlwaysOnTop(true);
+//                                Scene scene = new Scene(root);
+//                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+//                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+//                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+//                                stage.setScene(scene);
+//                                stage.setTitle(TITLE);
+//                                stage.show();
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
+//
+//                        }
+//                    }
+//                    );
+//
+//                }
+//            }
+//            );
+//
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    public void viewAppointmentUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewCustomerUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewEmployeeUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewHomeUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewPackageUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewPaymentUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewStockUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewSupplierUIb(ActionEvent event) {
+
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="459.0" prefWidth="662.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="Controller.PopUPSummaryController">
+   <children>
+      <PieChart fx:id="pie" layoutX="83.0" layoutY="14.0" prefHeight="373.0" prefWidth="496.0" />
+      <Label fx:id="lblinvoice" layoutX="24.0" layoutY="428.0" text="No. of Invoices:" />
+      <Label fx:id="lblIncome" layoutX="527.0" layoutY="428.0" text="Total income:" />
+   </children>
+</AnchorPane>
