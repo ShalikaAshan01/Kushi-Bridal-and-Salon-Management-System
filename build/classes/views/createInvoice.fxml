@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minHeight="650.0" minWidth="1360.0" prefHeight="650.0" prefWidth="1360.0" styleClass="createInvoice" stylesheets="@payment.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.createInvoiceController">
+    <children>
+      <Label fx:id="invoiceNo" accessibleRole="PARENT" layoutX="911.0" layoutY="33.0" text="Invoice No:112" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <GridPane layoutX="633.0" layoutY="487.0" prefHeight="163.0" prefWidth="273.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="633.0" AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="487.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="146.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="127.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="40.0" minHeight="1.0" prefHeight="1.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Gross Total" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label text="Net Amount" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label text="Cash" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label text="Change" textFill="WHITE" GridPane.rowIndex="5">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="grossTotal" prefHeight="19.0" prefWidth="128.0" text="5000" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="netAmount" prefHeight="19.0" prefWidth="131.0" text="4950" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Line endX="172.2928924560547" endY="0.7928932309150696" startX="-101.20710754394531" startY="0.7928932309150696" GridPane.rowIndex="4" />
+            <Label fx:id="change" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Baskerville Old Face" size="13.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="cash" onAction="#setChange" prefHeight="25.0" prefWidth="124.0" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <JFXButton fx:id="resetButton" layoutX="1001.0" layoutY="580.0" onAction="#reset" prefHeight="40.0" prefWidth="127.0" text="Reset" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="1001.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="saveButton" layoutX="867.0" layoutY="538.0" onAction="#addPayment" prefHeight="40.0" prefWidth="127.0" text="Save" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <StackPane fx:id="stackPane" layoutX="633.0" layoutY="266.0" prefHeight="44.0" prefWidth="292.0" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="633.0" AnchorPane.rightAnchor="435.0" AnchorPane.topAnchor="266.0" />
+            <JFXTreeTableView fx:id="tableAppointment" layoutX="16.0" layoutY="115.0" minWidth="424.0" prefHeight="520.0" prefWidth="555.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="115.0">
+   <columns>
+      <TreeTableColumn fx:id="columnAID" prefWidth="70.0" text="ID" />
+            <TreeTableColumn fx:id="columnname" prefWidth="150.0" text="Name" />
+      <TreeTableColumn fx:id="columnPackage" prefWidth="150.0" text="Package Name" />
+      <TreeTableColumn fx:id="columnDate" prefWidth="100.0" text="Date" />
+      <TreeTableColumn fx:id="columnTime" text="Time" />
+   </columns>
+</JFXTreeTableView>
+      <GridPane layoutX="632.0" layoutY="98.0" prefHeight="114.0" prefWidth="342.0" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="632.0" AnchorPane.rightAnchor="386.0" AnchorPane.topAnchor="98.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="116.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="194.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="96.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Customer Name:" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerName" text="Shehani Methma" textFill="WHITE" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Primary Address:" textFill="WHITE" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerAddress" text="100/B, New Kandy Road,&#10;Malabe" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Contact Number:" textFill="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerPhone" text="0711234567" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <JFXRadioButton fx:id="without" layoutX="622.0" layoutY="316.0" onAction="#onClickWithoutInstallment" text="Without Installment" textFill="WHITE" AnchorPane.bottomAnchor="316.0" AnchorPane.leftAnchor="622.0" AnchorPane.rightAnchor="606.0" AnchorPane.topAnchor="316.0">
+         <toggleGroup>
+            <ToggleGroup fx:id="installment" />
+         </toggleGroup>
+      </JFXRadioButton>
+      <Label fx:id="remPay" layoutX="633.0" layoutY="451.0" text="Remaining Payment:" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="18.0" layoutY="73.0" promptText="Search...." style="-fx-text-inner-color: white; -fx-prompt-text-fill: yellow;" unFocusColor="RED" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="1207.0" AnchorPane.topAnchor="73.0" />
+      <MenuBar layoutX="18.0" layoutY="23.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="273.0" AnchorPane.topAnchor="23.0">
+        <menus>
+                <Menu mnemonicParsing="false" text="     Home" />
+                <Menu mnemonicParsing="false" text="        Appointment" />
+                <Menu mnemonicParsing="false" text="          Customer" />
+                  <Menu mnemonicParsing="false" text="          Payment" />
+                  <Menu mnemonicParsing="false" text="      Packages" />
+                  <Menu mnemonicParsing="false" text="     Employee" />
+                  <Menu mnemonicParsing="false" text="     Finance" />
+                  <Menu mnemonicParsing="false" text="     Supplier" />
+                  <Menu mnemonicParsing="false" text="     Stock" />
+        </menus>
+      </MenuBar>
+      <ListView fx:id="listService" layoutX="1028.0" layoutY="132.0" prefHeight="355.0" prefWidth="267.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="1028.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="132.0" />
+      <JFXRadioButton fx:id="with" layoutX="803.0" layoutY="318.0" onAction="#onClickinstallment" text="Installment" textFill="WHITE" toggleGroup="$installment" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="803.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="318.0" />
+      <Label layoutX="1132.0" layoutY="76.0" text="Services" textFill="WHITE" AnchorPane.bottomAnchor="554.0" AnchorPane.leftAnchor="1132.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnView" layoutX="664.0" layoutY="391.0" prefHeight="40.0" prefWidth="212.0" text="View Payment" textFill="WHITE" AnchorPane.leftAnchor="664.0" AnchorPane.rightAnchor="484.0" AnchorPane.topAnchor="391.0" />
+      <SplitPane dividerPositions="0.5" layoutX="592.0" layoutY="68.0" prefHeight="577.0" prefWidth="7.0" style="-fx-background-color: transparent;" styleClass="createInvoice" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="68.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+        </items>
+      </SplitPane>
+      <JFXComboBox fx:id="cbPayment" layoutX="393.0" layoutY="73.0" onAction="#changeTable" prefHeight="25.0" prefWidth="178.0" promptText="All Appointment" unFocusColor="#fffdfd" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="789.0" AnchorPane.topAnchor="73.0" />
+    </children>
+</AnchorPane>

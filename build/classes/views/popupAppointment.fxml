@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="396.0" prefWidth="632.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.PopupAppointmentController">
+   <children>
+      <JFXTreeTableView fx:id="tableAppointment" layoutX="16.0" layoutY="57.0" prefHeight="309.0" prefWidth="600.0">
+         <columns>
+            <TreeTableColumn fx:id="columnAID" prefWidth="100.0" text="Appointment ID" />
+            <TreeTableColumn fx:id="columnFname" prefWidth="100.0" text="First Name" />
+            <TreeTableColumn fx:id="columnPackage" prefWidth="100.0" text="Package Name" />
+            <TreeTableColumn fx:id="columnDate" prefWidth="100.0" text="Date" />
+            <TreeTableColumn fx:id="columnTime" prefWidth="100.0" text="Time" />
+         </columns>
+      </JFXTreeTableView>
+      <JFXTextField fx:id="txtSearch" layoutX="434.0" layoutY="23.0" text="search" />
+      <JFXButton fx:id="btnAdd" layoutX="52.0" layoutY="23.0" onAction="#sumbitAppointmentID" text="Add" />
+   </children>
+</AnchorPane>
