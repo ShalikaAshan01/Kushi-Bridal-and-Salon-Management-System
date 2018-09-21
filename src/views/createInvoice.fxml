@@ -8,27 +8,70 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" minHeight="650.0" minWidth="1360.0" prefHeight="650.0" prefWidth="1360.0" styleClass="createInvoice" stylesheets="@payment.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="Controller.createInvoiceController">
+<AnchorPane id="AnchorPane" minHeight="650.0" minWidth="1360.0" prefHeight="650.0" prefWidth="1360.0" style="-fx-background-color: #1F1C2C;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.createInvoiceController">
     <children>
-      <Label fx:id="invoiceNo" accessibleRole="PARENT" layoutX="911.0" layoutY="33.0" text="Invoice No:112" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <HBox layoutX="-1.0" layoutY="1.0" prefHeight="48.0" prefWidth="1360.0" spacing="3.0" AnchorPane.bottomAnchor="595.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+         <children>
+            <JFXButton fx:id="home" buttonType="RAISED" mnemonicParsing="false" prefWidth="198.0" style="-fx-background-color: #00008B;" text="STOCK" textFill="#f2f2f2">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="appointment" buttonType="RAISED" mnemonicParsing="false" prefWidth="217.0" style="-fx-background-color: #006400;" text="APPOINTMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="csd" buttonType="RAISED" mnemonicParsing="false" prefWidth="214.0" style="-fx-background-color: #006400;" text="CUSTOMER" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="qwe" buttonType="RAISED" mnemonicParsing="false" prefWidth="219.0" style="-fx-background-color: #006400;" text="PACKAGES" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="eer" buttonType="RAISED" mnemonicParsing="false" prefWidth="222.0" style="-fx-background-color: #006400;" text="PAYEMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="wewr" buttonType="RAISED" mnemonicParsing="false" prefWidth="219.0" style="-fx-background-color: #006400;" text="EMPLOYEE" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="rre" buttonType="RAISED" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #006400;" text="SUPPLIERS" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" mnemonicParsing="false" prefWidth="165.0" style="-fx-background-color: #006400;" text="HOME" textFill="#fcf5f5">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <Label fx:id="invoiceNo" accessibleRole="PARENT" layoutX="1246.0" layoutY="131.0" text="Invoice No:112" textFill="WHITE" AnchorPane.leftAnchor="1246.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <GridPane layoutX="633.0" layoutY="487.0" prefHeight="163.0" prefWidth="273.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="633.0" AnchorPane.rightAnchor="454.0" AnchorPane.topAnchor="487.0">
+      <GridPane layoutX="648.0" layoutY="509.0" prefHeight="122.0" prefWidth="281.0" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="648.0" AnchorPane.rightAnchor="431.0" AnchorPane.topAnchor="509.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="146.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="127.0" />
@@ -42,7 +85,7 @@
             <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Gross Total" textFill="WHITE">
+            <Label text="Gross Total" textFill="WHITE" GridPane.rowIndex="1">
                <font>
                   <Font size="13.0" />
                </font>
@@ -62,7 +105,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Label fx:id="grossTotal" prefHeight="19.0" prefWidth="128.0" text="5000" textFill="WHITE" GridPane.columnIndex="1">
+            <Label fx:id="grossTotal" prefHeight="19.0" prefWidth="128.0" text="5000" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="13.0" />
                </font>
@@ -81,18 +124,24 @@
             <JFXTextField fx:id="cash" onAction="#setChange" prefHeight="25.0" prefWidth="124.0" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <JFXButton fx:id="resetButton" layoutX="1001.0" layoutY="580.0" onAction="#reset" prefHeight="40.0" prefWidth="127.0" text="Reset" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="1001.0">
+      <JFXButton fx:id="resetButton" layoutX="1000.0" layoutY="581.0" onAction="#reset" prefHeight="48.0" prefWidth="152.0" style="-fx-background-color: ff1744;" text="RESET" textFill="WHITE" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="1000.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="22.0" />
+         </font>
       </JFXButton>
-      <JFXButton fx:id="saveButton" layoutX="867.0" layoutY="538.0" onAction="#addPayment" prefHeight="40.0" prefWidth="127.0" text="Save" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0">
+      <JFXButton fx:id="saveButton" layoutX="1179.0" layoutY="581.0" onAction="#addPayment" prefHeight="40.0" prefWidth="152.0" style="-fx-background-color: #006400;" text="SAVE" textFill="WHITE" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="29.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="22.0" />
+         </font>
       </JFXButton>
       <StackPane fx:id="stackPane" layoutX="633.0" layoutY="266.0" prefHeight="44.0" prefWidth="292.0" AnchorPane.bottomAnchor="340.0" AnchorPane.leftAnchor="633.0" AnchorPane.rightAnchor="435.0" AnchorPane.topAnchor="266.0" />
-            <JFXTreeTableView fx:id="tableAppointment" layoutX="16.0" layoutY="115.0" minWidth="424.0" prefHeight="520.0" prefWidth="555.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="115.0">
+            <JFXTreeTableView fx:id="tableAppointment" layoutX="18.0" layoutY="220.0" minWidth="424.0" prefHeight="416.0" prefWidth="555.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="220.0">
    <columns>
       <TreeTableColumn fx:id="columnAID" prefWidth="70.0" text="ID" />
             <TreeTableColumn fx:id="columnname" prefWidth="150.0" text="Name" />
@@ -101,7 +150,7 @@
       <TreeTableColumn fx:id="columnTime" text="Time" />
    </columns>
 </JFXTreeTableView>
-      <GridPane layoutX="632.0" layoutY="98.0" prefHeight="114.0" prefWidth="342.0" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="632.0" AnchorPane.rightAnchor="386.0" AnchorPane.topAnchor="98.0">
+      <GridPane layoutX="646.0" layoutY="231.0" prefHeight="114.0" prefWidth="342.0" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="646.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="231.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="116.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="194.0" />
@@ -144,44 +193,39 @@
             </Label>
          </children>
       </GridPane>
-      <JFXRadioButton fx:id="without" layoutX="622.0" layoutY="316.0" onAction="#onClickWithoutInstallment" text="Without Installment" textFill="WHITE" AnchorPane.bottomAnchor="316.0" AnchorPane.leftAnchor="622.0" AnchorPane.rightAnchor="606.0" AnchorPane.topAnchor="316.0">
+      <JFXRadioButton fx:id="without" layoutX="646.0" layoutY="375.0" onAction="#onClickWithoutInstallment" text="Without Installment" textFill="WHITE" AnchorPane.bottomAnchor="257.0" AnchorPane.leftAnchor="646.0" AnchorPane.rightAnchor="582.0" AnchorPane.topAnchor="375.0">
          <toggleGroup>
             <ToggleGroup fx:id="installment" />
          </toggleGroup>
       </JFXRadioButton>
-      <Label fx:id="remPay" layoutX="633.0" layoutY="451.0" text="Remaining Payment:" textFill="WHITE">
+      <Label fx:id="remPay" layoutX="648.0" layoutY="488.0" text="Remaining Payment:" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="18.0" layoutY="73.0" promptText="Search...." style="-fx-text-inner-color: white; -fx-prompt-text-fill: yellow;" unFocusColor="RED" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="1207.0" AnchorPane.topAnchor="73.0" />
-      <MenuBar layoutX="18.0" layoutY="23.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="273.0" AnchorPane.topAnchor="23.0">
-        <menus>
-                <Menu mnemonicParsing="false" text="     Home" />
-                <Menu mnemonicParsing="false" text="        Appointment" />
-                <Menu mnemonicParsing="false" text="          Customer" />
-                  <Menu mnemonicParsing="false" text="          Payment" />
-                  <Menu mnemonicParsing="false" text="      Packages" />
-                  <Menu mnemonicParsing="false" text="     Employee" />
-                  <Menu mnemonicParsing="false" text="     Finance" />
-                  <Menu mnemonicParsing="false" text="     Supplier" />
-                  <Menu mnemonicParsing="false" text="     Stock" />
-        </menus>
-      </MenuBar>
-      <ListView fx:id="listService" layoutX="1028.0" layoutY="132.0" prefHeight="355.0" prefWidth="267.0" AnchorPane.bottomAnchor="163.0" AnchorPane.leftAnchor="1028.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="132.0" />
-      <JFXRadioButton fx:id="with" layoutX="803.0" layoutY="318.0" onAction="#onClickinstallment" text="Installment" textFill="WHITE" toggleGroup="$installment" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="803.0" AnchorPane.rightAnchor="471.0" AnchorPane.topAnchor="318.0" />
-      <Label layoutX="1132.0" layoutY="76.0" text="Services" textFill="WHITE" AnchorPane.bottomAnchor="554.0" AnchorPane.leftAnchor="1132.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="70.0">
+      <JFXTextField fx:id="txtSearch" labelFloat="true" layoutX="18.0" layoutY="184.0" promptText="Search...." style="-fx-text-inner-color: white; -fx-prompt-text-fill: yellow;" unFocusColor="RED" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="1207.0" AnchorPane.topAnchor="184.0" />
+      <ListView fx:id="listService" layoutX="1028.0" layoutY="197.0" prefHeight="355.0" prefWidth="267.0" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="1028.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="197.0" />
+      <JFXRadioButton fx:id="with" layoutX="827.0" layoutY="377.0" onAction="#onClickinstallment" text="Installment" textFill="WHITE" toggleGroup="$installment" AnchorPane.bottomAnchor="256.0" AnchorPane.leftAnchor="827.0" AnchorPane.rightAnchor="447.0" AnchorPane.topAnchor="377.0" />
+      <Label accessibleRole="PARENT" layoutX="1133.0" layoutY="162.0" prefHeight="19.0" prefWidth="58.0" text="Services" textFill="WHITE" AnchorPane.leftAnchor="1133.0" AnchorPane.rightAnchor="169.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnView" layoutX="664.0" layoutY="391.0" prefHeight="40.0" prefWidth="212.0" text="View Payment" textFill="WHITE" AnchorPane.leftAnchor="664.0" AnchorPane.rightAnchor="484.0" AnchorPane.topAnchor="391.0" />
-      <SplitPane dividerPositions="0.5" layoutX="592.0" layoutY="68.0" prefHeight="577.0" prefWidth="7.0" style="-fx-background-color: transparent;" styleClass="createInvoice" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="68.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-        </items>
-      </SplitPane>
-      <JFXComboBox fx:id="cbPayment" layoutX="393.0" layoutY="73.0" onAction="#changeTable" prefHeight="25.0" prefWidth="178.0" promptText="All Appointment" unFocusColor="#fffdfd" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="789.0" AnchorPane.topAnchor="73.0" />
+      <JFXButton fx:id="btnView" layoutX="683.0" layoutY="438.0" prefHeight="40.0" prefWidth="212.0" style="-fx-background-color: #00008B;" text="Previous Payment" textFill="WHITE" AnchorPane.leftAnchor="683.0" AnchorPane.rightAnchor="465.0" AnchorPane.topAnchor="438.0" />
+      <JFXComboBox fx:id="cbPayment" focusColor="#1f1c2c" layoutX="388.0" layoutY="184.0" onAction="#changeTable" prefHeight="25.0" prefWidth="178.0" promptText="All Appointment" unFocusColor="#1f1c2c" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="794.0" AnchorPane.topAnchor="184.0" />
+      <AnchorPane layoutX="1.0" layoutY="62.0" prefHeight="70.0" prefWidth="1360.0" style="-fx-background-color: #1E90FF;">
+         <children>
+            <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT MANAGEMENT" textAlignment="CENTER" wrappingWidth="444.60595703125">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="683.0" layoutY="141.0" prefHeight="54.0" prefWidth="194.0" ripplerFill="RED" style="-fx-background-color: #00008B;" text="VIEW PAYMENTS" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
     </children>
 </AnchorPane>
