@@ -833,37 +833,6 @@ public class createInvoiceController implements Initializable {
             stage.setMaximized(true);
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
-
-            //handle close button(X)
-//            stage.setOnHiding(new EventHandler<WindowEvent>() {
-//                @Override
-//                public void handle(WindowEvent event) {
-//                    Platform.runLater(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            try {
-//                                AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/Menu.fxml"));
-//                                Stage stage = new Stage();
-//                                //    stage.setAlwaysOnTop(true);
-//                                Scene scene = new Scene(root);
-//                                //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
-//                                //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
-//                                //stage.initStyle(StageStyle.UNDECORATED);//hide all button
-//                                stage.setScene(scene);
-//                                stage.setTitle(TITLE);
-//                                stage.show();
-//                            } catch (IOException ex) {
-//                                Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-//
-//                        }
-//                    }
-//                    );
-//
-//                }
-//            }
-//            );
-//
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -891,7 +860,22 @@ public class createInvoiceController implements Initializable {
 
     @FXML
     public void viewPackageUIb(ActionEvent event) {
-
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addService.fxml"));
+            Stage stage = new Stage();
+            //    stage.setAlwaysOnTop(true);
+            Scene scene = new Scene(root);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setScene(scene);
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

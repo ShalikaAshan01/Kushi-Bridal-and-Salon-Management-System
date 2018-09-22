@@ -82,7 +82,7 @@
     <jar href="lib\xml-apis.jar" size="220536" download="eager" />
     <jar href="lib\xmlbeans-2.5.0.jar" size="2722970" download="eager" />
     <jar href="lib\xmpcore-5.1.1.jar" size="122260" download="eager" />
-    <jar href="payment.jar" size="139933" download="eager" />
+    <jar href="payment.jar" size="149531" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="payment" >
     <param name="requiredFXVersion" value="8.0+"/>
