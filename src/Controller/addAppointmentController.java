@@ -693,4 +693,48 @@ public class addAppointmentController implements Initializable {
 
                 
     }
+    
+   @FXML
+   public  void cId(ActionEvent event) {
+     
+       String keyword = cusID.getText();
+        AppointmentServices appointmentServices = new AppointmentServices();
+
+        try{
+            Connection connection = DBConnection.getDBConnection();
+            String query = "select * from customer where id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            if(Integer.parseInt(keyword) <100)
+                keyword = "00"+keyword;
+            preparedStatement.setString(1, keyword);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            if(resultSet.next()){
+                cusAdd.setText(resultSet.getString("address"));
+                telNum.setText(resultSet.getString("phonenumber"));
+                cusName.setText(resultSet.getString("firstname") + " " +resultSet.getString("lastname"));
+            }else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Customer ID  was not found");
+                alert.showAndWait();
+                clean();
+            }
+            
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch(NumberFormatException|NullPointerException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid Customer ID");
+                alert.showAndWait();
+                clean();
+            }
+
+    }
+
+    
 }

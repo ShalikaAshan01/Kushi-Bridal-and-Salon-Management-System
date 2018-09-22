@@ -285,6 +285,8 @@ public class appointmentViewController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+                        ((Node) (event.getSource())).getScene().getWindow().hide();
+
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/salonmanagementsystem/FXMLDocument.fxml"));
 //        Parent root1 = (Parent) fxmlLoader.load();
 //        //Stage stage = new Stage();

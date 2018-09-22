@@ -40,7 +40,7 @@
             <Font name="SansSerif Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="cusID" layoutX="563.0" layoutY="257.0" prefHeight="29.0" prefWidth="280.0" />
+      <TextField fx:id="cusID" layoutX="563.0" layoutY="257.0" onAction="#cId" prefHeight="29.0" prefWidth="280.0" />
       <TextField fx:id="cusName" layoutX="562.0" layoutY="304.0" prefHeight="29.0" prefWidth="280.0" />
       <TextField fx:id="cusAdd" layoutX="563.0" layoutY="359.0" prefHeight="29.0" prefWidth="280.0" />
       <TextField fx:id="telNum" layoutX="563.0" layoutY="409.0" prefHeight="29.0" prefWidth="280.0" />

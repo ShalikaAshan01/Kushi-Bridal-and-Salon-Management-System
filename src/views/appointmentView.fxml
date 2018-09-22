@@ -28,7 +28,7 @@
             <TableColumn fx:id="tot2" prefWidth="61.0" text="total" />
         </columns>
       </TableView>
-      <JFXButton fx:id="AddApoint" buttonType="RAISED" layoutX="566.0" layoutY="179.0" mnemonicParsing="false" onAction="#AddApoint" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="ADD APPOINTMENT" textFill="WHITE">
+      <JFXButton fx:id="AddApoint" buttonType="RAISED" layoutX="381.0" layoutY="183.0" mnemonicParsing="false" onAction="#AddApoint" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="ADD APPOINTMENT" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="14.0" />
          </font></JFXButton>
@@ -37,17 +37,17 @@
          <font>
             <Font name="Rockwell" size="14.0" />
          </font></Text>
-      <JFXButton fx:id="exit" buttonType="RAISED" layoutX="1018.0" layoutY="176.0" mnemonicParsing="false" onAction="#exitBtn" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: red;" text="EXIT" textFill="WHITE">
+      <JFXButton fx:id="exit" buttonType="RAISED" layoutX="1018.0" layoutY="183.0" mnemonicParsing="false" onAction="#exitBtn" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: red;" text="EXIT" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="report" buttonType="RAISED" layoutX="317.0" layoutY="183.0" mnemonicParsing="false" onAction="#report" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="GENARATE REPORT" textFill="WHITE">
+      <JFXButton fx:id="report" buttonType="RAISED" layoutX="598.0" layoutY="183.0" mnemonicParsing="false" onAction="#report" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="GENARATE REPORT" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="del_col" buttonType="RAISED" layoutX="809.0" layoutY="176.0" mnemonicParsing="false" onAction="#del_col" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: red;" text="DELETE" textFill="WHITE">
+      <JFXButton fx:id="del_col" buttonType="RAISED" layoutX="809.0" layoutY="183.0" mnemonicParsing="false" onAction="#del_col" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: red;" text="DELETE" textFill="WHITE">
          <font>
             <Font name="Rockwell" size="13.0" />
          </font>
