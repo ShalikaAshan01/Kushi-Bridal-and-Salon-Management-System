@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="497.0" prefWidth="817.0" stylesheets="@newCascadeStyleSheet.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.appointmentViewController">
+   <children>
+      <TableView fx:id="AppointView" layoutX="30.0" layoutY="100.0" prefHeight="303.0" prefWidth="758.0">
+        <columns>
+          <TableColumn fx:id="apID" prefWidth="66.0" text="AppointID" />
+          <TableColumn fx:id="date2" prefWidth="82.0" text="Date" />
+            <TableColumn fx:id="time2" prefWidth="76.0" text="Time" />
+            <TableColumn fx:id="emp2" prefWidth="73.0" text="employee" />
+            <TableColumn fx:id="cid2" prefWidth="46.0" text="custID" />
+            <TableColumn fx:id="cName2s" prefWidth="70.0" text="custName" />
+            <TableColumn fx:id="cAddress2" prefWidth="82.0" text="custAddress" />
+            <TableColumn fx:id="Tel2" prefWidth="64.0" text="TeleNum" />
+            <TableColumn fx:id="ser2" prefWidth="63.0" text="services" />
+            <TableColumn fx:id="pack2" minWidth="0.0" prefWidth="74.0" text="packages" />
+            <TableColumn fx:id="tot2" prefWidth="61.0" text="total" />
+        </columns>
+      </TableView>
+      <Label fx:id="TableLbel" layoutX="252.0" layoutY="14.0" prefHeight="35.0" prefWidth="290.0" text="Appointment Table View">
+         <font>
+            <Font name="Rockwell Bold Italic" size="24.0" />
+         </font></Label>
+      <Button fx:id="AddApoint" layoutX="30.0" layoutY="58.0" mnemonicParsing="false" onAction="#AddApoint" text="+ Add Appointment">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font></Button>
+      <TextField fx:id="txtSearch" layoutX="707.0" layoutY="46.0" onKeyReleased="#txtSearch" prefHeight="25.0" prefWidth="40.0" />
+      <Text fx:id="search2" layoutX="649.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font></Text>
+      <Button fx:id="exit" layoutX="718.0" layoutY="436.0" mnemonicParsing="false" onAction="#exitBtn" prefHeight="25.0" prefWidth="58.0" text="Exit">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="report" layoutX="40.0" layoutY="434.0" mnemonicParsing="false" onAction="#report" prefHeight="29.0" prefWidth="128.0" text="Generate Report">
+         <font>
+            <Font name="Rockwell" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="del_col" layoutX="619.0" layoutY="437.0" mnemonicParsing="false" onAction="#del_col" text="Delete">
+         <font>
+            <Font name="Rockwell" size="13.0" />
+         </font>
+      </Button>
+      <Label layoutX="270.0" layoutY="455.0" prefHeight="27.0" prefWidth="206.0" text="Kushi Bridal Hair &amp; Beauty Salon">
+         <font>
+            <Font name="Chiller" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
