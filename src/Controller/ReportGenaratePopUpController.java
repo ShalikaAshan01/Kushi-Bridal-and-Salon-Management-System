@@ -75,7 +75,7 @@ public class ReportGenaratePopUpController implements Initializable {
 
         });
     }
-    private String query = "select payid,fname,lname,aid,payDate,payTime,total  from payment p,Customer c where p.cid= c.nic";
+    private String query = "select payid,cid,firstname,lastname,aid,payDate,payTime,total  from payment p,Customer c where p.cid= c.id";
 
     private String title = "";
     private String alertHeader = "";
@@ -314,7 +314,7 @@ public class ReportGenaratePopUpController implements Initializable {
     }
 
     public boolean queryValidation() throws ClassNotFoundException, SQLException {
-        query = "select payid,fname,lname,aid,payDate,payTime,total  from payment p,Customer c where p.cid= c.nic";
+        query = "select payid,cid,firstname,lastname,aid,payDate,payTime,total  from payment p,Customer c where p.cid= c.id";
         Connection conn = DBConnection.getDBConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet;
@@ -402,12 +402,14 @@ public class ReportGenaratePopUpController implements Initializable {
             String lname = name[1];
             alertHeader = "No enties found for " + txtCustom.getText();
             contextHeader = "Please enter valid Customer name";
-            query = query + " and c.fname like '%" + fname + "%'"
-                    + "and c.lname like '%" + lname + "%'";
+            query = query + " and c.firstname like '%" + fname + "%'"
+                    + "and c.lastname like '%" + lname + "%'";
 
         }
 
         preparedStatement = conn.prepareStatement(query);
+        
+        System.out.println("query: " + query);
         resultSet = preparedStatement.executeQuery();
         int count = 0;
         while (resultSet.next()) {

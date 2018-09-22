@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import model.Appointment;
 import model.Customer;
 import model.PaymentModel;
-import model.ServiceModel;
 
 /**
  *

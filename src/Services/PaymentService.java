@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import model.Appointment;
 import model.Customer;
 import model.PaymentModel;
-import model.ServiceModel;
 
 /**
  *

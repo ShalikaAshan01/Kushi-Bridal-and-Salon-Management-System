@@ -70,7 +70,6 @@ import model.Appointment;
 import model.AppointmentforTable;
 import model.Customer;
 import model.PaymentModel;
-import model.ServiceModel;
 
 /**
  *
