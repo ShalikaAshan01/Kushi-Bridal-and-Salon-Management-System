@@ -150,6 +150,9 @@ public class createInvoiceController implements Initializable {
     private Button btnView;
     @FXML
     private JFXTextField txtSearch;
+    @FXML
+    private Button btnViewPay;
+    //for navigation bar
 
     @FXML
     private Button btnStockUI;
@@ -171,8 +174,6 @@ public class createInvoiceController implements Initializable {
 
     @FXML
     private Button btnSuppllierUI;
-    @FXML
-    private Button btnViewPay;
 
     @FXML
     private Button btnHomeUI;
@@ -838,6 +839,7 @@ public class createInvoiceController implements Initializable {
         }
     }
 
+    //for navigation bar
     @FXML
     public void viewAppointmentUIb(ActionEvent event) {
         try {
@@ -896,7 +898,22 @@ public class createInvoiceController implements Initializable {
 
     @FXML
     public void viewPaymentUIb(ActionEvent event) {
-
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/createInvoice.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

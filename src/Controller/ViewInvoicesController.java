@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import static Controller.createInvoiceController.TITLE;
 import Services.PaymentService;
 import Services.PaymentServiceInterface;
 import com.jfoenix.controls.JFXTextField;
@@ -354,7 +355,22 @@ public class ViewInvoicesController implements Initializable {
 
     @FXML
     public void viewAppointmentUIb(ActionEvent event) {
-
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addAppointment.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -374,7 +390,23 @@ public class ViewInvoicesController implements Initializable {
 
     @FXML
     public void viewPackageUIb(ActionEvent event) {
-
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addPackage.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="661.0" prefWidth="1500.0" style="-fx-background-color: #928DAB,#1F1C2C;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addPackageController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #1F1C2C #1F1C2C;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addPackageController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Text fill="#fcf8f8" layoutX="14.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Package" wrappingWidth="367.13671875">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text fill="#ebe9e9" layoutX="14.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Id" wrappingWidth="96.13671875" AnchorPane.leftAnchor="14.0">
+      <Text fill="#ebe9e9" layoutX="21.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Id" wrappingWidth="96.13671875" AnchorPane.leftAnchor="21.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#ebe9e9" layoutX="13.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Name" wrappingWidth="126.13671875" AnchorPane.leftAnchor="14.0">
+      <Text fill="#ebe9e9" layoutX="21.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Name" wrappingWidth="126.13671875" AnchorPane.leftAnchor="21.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="colpname" layoutX="169.0" layoutY="276.0" prefHeight="25.0" prefWidth="160.0" />
-      <Text fill="#fcfafa" layoutX="13.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Services" wrappingWidth="141.13671875" AnchorPane.leftAnchor="14.0">
+      <TextField fx:id="colpname" layoutX="190.0" layoutY="395.0" prefHeight="25.0" prefWidth="160.0" />
+      <Text fill="#fcfafa" layoutX="20.0" layoutY="477.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Services" wrappingWidth="141.13671875" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#f8f6f6" layoutX="5.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Price" wrappingWidth="141.13671626895666" AnchorPane.leftAnchor="14.0">
+      <Text fill="#f8f6f6" layoutX="20.0" layoutY="579.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Price" wrappingWidth="141.13671626895666" AnchorPane.leftAnchor="20.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="colPrice" layoutX="169.0" layoutY="456.0" prefHeight="25.0" prefWidth="199.0" />
-      <Button fx:id="submit" layoutX="339.0" layoutY="541.0" mnemonicParsing="false" onAction="#insertPackage" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #FFFF00;" text="Add" />
-      <TableView fx:id="packagetable" layoutX="731.0" layoutY="206.0" onMousePressed="#fill" prefHeight="401.0" prefWidth="730.0" AnchorPane.rightAnchor="39.0">
+      <TextField fx:id="colPrice" layoutX="190.0" layoutY="559.0" prefHeight="25.0" prefWidth="199.0" />
+      <JFXButton fx:id="submit" layoutX="377.0" layoutY="638.0" mnemonicParsing="false" onAction="#insertPackage" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #006400;" text="Add" textFill="WHITE" />
+      <TableView fx:id="packagetable" layoutX="529.0" layoutY="296.0" onMousePressed="#fill" prefHeight="401.0" prefWidth="730.0" AnchorPane.rightAnchor="21.0">
         <columns>
           <TableColumn fx:id="packageid" prefWidth="86.0" text="Package Id" />
           <TableColumn fx:id="packagename" prefWidth="159.0" text="Package Name" />
@@ -51,25 +49,117 @@
             <TableColumn fx:id="packageprice" minWidth="8.0" prefWidth="98.0" text="Price" />
         </columns>
       </TableView>
-      <Button fx:id="delete" layoutX="1341.0" layoutY="145.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ff3333;" text="Delete" AnchorPane.rightAnchor="39.0" />
-      <Button fx:id="load" layoutX="603.0" layoutY="145.0" mnemonicParsing="false" onAction="#loadData" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00FF00;" text="View" />
-      <ComboBox fx:id="combo1" layoutX="170.0" layoutY="340.0" prefWidth="150.0" promptText="Service 1 " />
-      <ComboBox fx:id="combo2" layoutX="339.0" layoutY="340.0" prefWidth="150.0" promptText="Service 2" />
-      <ComboBox fx:id="combo3" layoutX="170.0" layoutY="393.0" prefWidth="150.0" promptText="Service 3" />
-      <Button fx:id="btn_update" layoutX="918.0" layoutY="145.0" mnemonicParsing="false" onAction="#updatePackage" prefWidth="120.0" style="-fx-background-color: #00FFFF;" text="Update" />
-      <Text fill="WHITE" layoutX="473.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Package Management" wrappingWidth="379.13671875">
+      <JFXButton fx:id="delete" buttonType="RAISED" layoutX="1014.0" layoutY="189.0" mnemonicParsing="false" onAction="#delete" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #ff3333;" text="DELETE" textFill="WHITE">
          <font>
-            <Font size="36.0" />
-         </font>
-      </Text>
-      <TextField fx:id="colpid" layoutX="167.0" layoutY="216.0" prefHeight="25.0" prefWidth="160.0" />
-      <Button fx:id="report" layoutX="937.0" layoutY="622.0" mnemonicParsing="false" text="Report" />
-      <TextField fx:id="searchPackage" layoutX="1080.0" layoutY="90.0" onKeyReleased="#searchPackage" />
-      <Text fill="#f8f6f6" layoutX="1003.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="69.0000057220459">
+            <Font size="14.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="load" buttonType="RAISED" layoutX="590.0" layoutY="189.0" mnemonicParsing="false" onAction="#loadData" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #00008B;" text="VIEW PACKAGE" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <ComboBox fx:id="combo1" layoutX="190.0" layoutY="457.0" prefWidth="150.0" promptText="Service 1 " />
+      <ComboBox fx:id="combo2" layoutX="369.0" layoutY="457.0" prefWidth="150.0" promptText="Service 2" />
+      <ComboBox fx:id="combo3" layoutX="190.0" layoutY="504.0" prefWidth="150.0" promptText="Service 3" />
+      <JFXButton fx:id="btn_update" layoutX="198.0" layoutY="638.0" mnemonicParsing="false" onAction="#updatePackage" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #006400;" text="Update" textFill="WHITE" />
+      <TextField fx:id="colpid" layoutX="190.0" layoutY="341.0" prefHeight="25.0" prefWidth="160.0" />
+      <JFXButton fx:id="report" layoutX="803.0" layoutY="189.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #00008B;" text="GENARATE REPORT" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <TextField fx:id="searchPackage" layoutX="1110.0" layoutY="257.0" onKeyReleased="#searchPackage" prefHeight="25.0" prefWidth="141.0" AnchorPane.rightAnchor="18.0" />
+      <Text fill="#f8f6f6" layoutX="1041.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="69.0000057220459" AnchorPane.rightAnchor="169.9999942779541">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="reset" layoutX="206.0" layoutY="541.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="52.0" text="Reset" />
+      <JFXButton fx:id="reset" layoutX="18.0" layoutY="638.0" mnemonicParsing="false" onAction="#reset" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: red;" text="Reset" textFill="WHITE" />
+      <HBox layoutX="18.0" layoutY="21.0" prefHeight="48.0" prefWidth="1360.0" spacing="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <JFXButton fx:id="btnStockUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewStockUIb" prefWidth="198.0" style="-fx-background-color: #006400;" text="STOCK" textFill="#f2f2f2">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnAppointmentUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewAppointmentUIb" prefHeight="45.0" prefWidth="238.0" style="-fx-background-color: #006400;" text="APPOINTMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnCustomerUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewCustomerUIb" prefWidth="214.0" style="-fx-background-color: #006400;" text="CUSTOMER" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnPackageUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewPackageUIb" prefWidth="219.0" style="-fx-background-color: #00008B;" text="PACKAGES" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnPaymentUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewPaymentUIb" prefWidth="222.0" style="-fx-background-color: #006400;" text="PAYEMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnEmployeeUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewEmployeeUIb" prefWidth="219.0" style="-fx-background-color: #006400;" text="EMPLOYEE" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSuppllierUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewSupplierUIb" prefWidth="200.0" style="-fx-background-color: #006400;" text="SUPPLIERS" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnHomeUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewHomeUIb" prefWidth="165.0" style="-fx-background-color: #006400;" text="HOME" textFill="#fcf5f5">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="10.0" layoutY="74.0" prefHeight="70.0" prefWidth="1367.0" style="-fx-background-color: #1E90FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+         <children>
+            <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PACKAGE MANAGEMENT" textAlignment="CENTER" wrappingWidth="444.60595703125" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="821.39404296875">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="#fcfcfc" layoutX="157.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Package" underline="true" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="136.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <Separator layoutY="237.0" prefHeight="21.0" prefWidth="1346.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <JFXButton buttonType="RAISED" layoutX="377.0" layoutY="189.0" onAction="#viewService" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="ADD SERVICE" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
     </children>
 </AnchorPane>

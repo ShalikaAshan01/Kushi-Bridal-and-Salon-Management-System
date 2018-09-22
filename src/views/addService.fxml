@@ -1,63 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="661.0" prefWidth="1276.0" style="-fx-background-color: #928DAB,#1F1C2C;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addServiceController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="720.0" prefWidth="1276.0" style="-fx-background-color: #1F1C2C #1F1C2C;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addServiceController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Text fill="#fcf8f8" layoutX="14.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Service" wrappingWidth="306.13671875">
+      <Text fill="#fcf8f8" layoutX="14.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Service" wrappingWidth="306.13671875" AnchorPane.leftAnchor="147.0" AnchorPane.topAnchor="136.0">
          <font>
-            <Font size="24.0" />
+            <Font size="36.0" />
          </font>
       </Text>
-      <Text fill="#ebe9e9" layoutX="14.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Id" wrappingWidth="96.13671875">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="colservice" layoutX="155.0" layoutY="392.0" prefHeight="0.0" prefWidth="149.0" />
-      <Text fill="#ebe9e9" layoutX="14.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Name" wrappingWidth="126.13671875">
+      <Text fill="#ebe9e9" layoutX="137.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Id" wrappingWidth="96.13671875">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="colname" layoutX="155.0" layoutY="449.0" />
-      <Text fill="#f8f6f6" layoutX="14.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Price" wrappingWidth="126.13670682907104">
+      <TextField fx:id="colservice" layoutX="278.0" layoutY="404.0" prefHeight="0.0" prefWidth="149.0" />
+      <Text fill="#ebe9e9" layoutX="137.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Name" wrappingWidth="126.13671875">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="colsprice" layoutX="155.0" layoutY="502.0" />
-      <Button fx:id="submit" layoutX="280.0" layoutY="589.0" mnemonicParsing="false" onAction="#addService" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #FFFF00;" text="Submit" />
-      <TableView fx:id="serviceTable" layoutX="591.0" layoutY="233.0" prefHeight="457.0" prefWidth="628.0">
+      <TextField fx:id="colname" layoutX="278.0" layoutY="461.0" />
+      <Text fill="#f8f6f6" layoutX="137.0" layoutY="533.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Price" wrappingWidth="126.13670682907104">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="colsprice" layoutX="278.0" layoutY="514.0" />
+      <JFXButton fx:id="submit" layoutX="383.0" layoutY="629.0" mnemonicParsing="false" onAction="#addService" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #006400;" text="SUBMIT" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <TableView fx:id="serviceTable" layoutX="727.0" layoutY="310.0" prefHeight="396.0" prefWidth="662.0" AnchorPane.rightAnchor="-109.0">
         <columns>
           <TableColumn fx:id="sid" prefWidth="116.0" text="Service Id" />
           <TableColumn fx:id="sname" prefWidth="294.0" text="Service Name" />
             <TableColumn fx:id="sprice" minWidth="0.0" prefWidth="217.0" text="Price" />
         </columns>
       </TableView>
-      <Button layoutX="1093.0" layoutY="182.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #ff3333;" text="Delete" />
-      <Button fx:id="loadbtn" layoutX="591.0" layoutY="182.0" mnemonicParsing="false" onAction="#loadData" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00FF00;" text="View" />
-      <Button fx:id="btn_update" layoutX="831.0" layoutY="182.0" mnemonicParsing="false" onAction="#updateService" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #00FFFF;" text="Update" />
-      <Text fill="#f8f7f7" layoutX="375.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Management" wrappingWidth="575.13671875">
+      <JFXButton buttonType="RAISED" layoutX="1025.0" layoutY="195.0" mnemonicParsing="false" onAction="#delete" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #ff3333;" text="Delete" />
+      <JFXButton fx:id="loadbtn" buttonType="RAISED" layoutX="577.0" layoutY="195.0" mnemonicParsing="false" onAction="#loadData" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="VIEW" textFill="WHITE">
          <font>
-            <Font size="48.0" />
-         </font>
-      </Text>
-      <TextField fx:id="searchService" layoutX="891.0" layoutY="107.0" onKeyReleased="#searchService" />
-      <Text fill="#f8f6f6" layoutX="813.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="search" wrappingWidth="69.0000057220459">
+            <Font size="14.0" />
+         </font></JFXButton>
+      <JFXButton fx:id="btn_update" layoutX="217.0" layoutY="629.0" mnemonicParsing="false" onAction="#updateService" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #006400;" text="UPDATE" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <TextField fx:id="searchService" layoutX="1117.0" layoutY="263.0" onKeyReleased="#searchService" AnchorPane.rightAnchor="14.0" />
+      <Text fill="#f8f6f6" layoutX="1056.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="search" wrappingWidth="69.0000057220459" AnchorPane.rightAnchor="154.9999942779541">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="reset" layoutX="185.0" layoutY="589.0" mnemonicParsing="false" onAction="#Reset" text="Reset" />
-      <Button layoutX="1099.0" layoutY="106.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Report" />
+      <JFXButton fx:id="reset" layoutX="40.0" layoutY="629.0" mnemonicParsing="false" onAction="#Reset" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: red;" text="RESET" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="804.0" layoutY="195.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="GENARATE REPORT" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></JFXButton>
+      <HBox layoutX="28.0" layoutY="31.0" prefHeight="48.0" prefWidth="1360.0" spacing="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <JFXButton fx:id="btnStockUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewStockUIb" prefWidth="198.0" style="-fx-background-color: #006400;" text="STOCK" textFill="#f2f2f2">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnAppointmentUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewAppointmentUIb" prefHeight="45.0" prefWidth="238.0" style="-fx-background-color: #006400;" text="APPOINTMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnCustomerUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewCustomerUIb" prefWidth="214.0" style="-fx-background-color: #006400;" text="CUSTOMER" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnPackageUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewPackageUIb" prefWidth="219.0" style="-fx-background-color: #00008B;" text="PACKAGES" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnPaymentUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewPaymentUIb" prefWidth="222.0" style="-fx-background-color: #006400;" text="PAYEMENT" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnEmployeeUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewEmployeeUIb" prefWidth="219.0" style="-fx-background-color: #006400;" text="EMPLOYEE" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnSuppllierUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewSupplierUIb" prefWidth="200.0" style="-fx-background-color: #006400;" text="SUPPLIERS" textFill="#fffafa">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btnHomeUI" buttonType="RAISED" mnemonicParsing="false" onAction="#viewHomeUIb" prefWidth="165.0" style="-fx-background-color: #006400;" text="HOME" textFill="#fcf5f5">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="20.0" layoutY="84.0" prefHeight="70.0" prefWidth="1367.0" style="-fx-background-color: #1E90FF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+         <children>
+            <Text layoutX="14.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SERVICE MANAGEMENT" textAlignment="CENTER" wrappingWidth="444.60595703125" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="821.39404296875">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Separator layoutY="242.0" prefHeight="21.0" prefWidth="1346.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <JFXButton buttonType="RAISED" layoutX="345.0" layoutY="195.0" onAction="#viewPackage" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #00008B;" text="ADD PACKAGE" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
     </children>
 </AnchorPane>

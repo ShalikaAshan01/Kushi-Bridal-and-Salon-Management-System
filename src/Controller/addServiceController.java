@@ -5,7 +5,9 @@
  */
 package Controller;
 
+import static Controller.createInvoiceController.TITLE;
 import Utils.DBConnection;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
@@ -23,16 +27,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.serviceModel;
 import org.apache.log4j.BasicConfigurator;
 /**
@@ -82,6 +91,32 @@ public class addServiceController implements Initializable {
     private Button reset;
     @FXML
     private Label label;
+    
+            //for navigation bar
+
+    @FXML
+    private Button btnStockUI;
+
+    @FXML
+    private Button btnAppointmentUI;
+
+    @FXML
+    private Button btnCustomerUI;
+
+    @FXML
+    private Button btnPackageUI;
+
+    @FXML
+    private Button btnPaymentUI;
+
+    @FXML
+    private Button btnEmployeeUI;
+
+    @FXML
+    private Button btnSuppllierUI;
+
+    @FXML
+    private Button btnHomeUI;
 
     public addServiceController() throws ClassNotFoundException, SQLException {
         this.connection = DBConnection.getDBConnection();
@@ -483,6 +518,108 @@ public class addServiceController implements Initializable {
     
 
     }*/
+    @FXML
+    public void viewPackage(ActionEvent actionEvent){
+                        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addPackage.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+            //for navigation bar
+    @FXML
+    public void viewAppointmentUIb(ActionEvent event) {
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addAppointment.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    public void viewCustomerUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewEmployeeUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewHomeUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewPackageUIb(ActionEvent event) {
+        
+    }
+
+    @FXML
+    public void viewPaymentUIb(ActionEvent event) {
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/createInvoice.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    public void viewStockUIb(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void viewSupplierUIb(ActionEvent event) {
+
+    }
+    public void setNavigationbarToolTip(){
+        btnAppointmentUI.setTooltip(new Tooltip("Appointment Management System"));
+        btnCustomerUI.setTooltip(new Tooltip("Customer Management System"));
+        btnEmployeeUI.setTooltip(new Tooltip("Employee Management System"));
+        btnStockUI.setTooltip(new Tooltip("Stock Management System"));
+        btnPackageUI.setTooltip(new Tooltip("Package Management System"));
+        btnPaymentUI.setTooltip(new Tooltip("Payment Management System"));
+        btnSuppllierUI.setTooltip(new Tooltip("Supplier Management System"));
+        btnHomeUI.setTooltip(new Tooltip("Home"));
+
+                
+    }
     
 
 }
