@@ -7,8 +7,12 @@ package Controller;
 
 import static Controller.createInvoiceController.TITLE;
 import Services.AppointmentServices;
+import Utils.DBConnection;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -242,15 +246,26 @@ public class addAppointmentController implements Initializable {
     }
 
     public void empSearch() {
-        employeeSearch employeeSearch1 = new employeeSearch(1, "Shreya");
-        employeeSearch employeeSearch2 = new employeeSearch(1, "Shenaya");
-        employeeSearch employeeSearch3 = new employeeSearch(1, "Senuri");
-        employeeSearch employeeSearch4 = new employeeSearch(1, "Nilumi");
-
-        search.add(employeeSearch1);
-        search.add(employeeSearch2);
-        search.add(employeeSearch3);
-        search.add(employeeSearch4);
+                try{
+            Connection connection = DBConnection.getDBConnection();
+            String query = "SELECT EID,FirstName,LastName FROM Employee";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                
+        employeeSearch employeeSearch1 = new employeeSearch(resultSet.getInt("EID"), resultSet.getString("FirstName")+" "+ resultSet.getString("LastName"));
+                search.add(employeeSearch1);
+                
+            }
+            preparedStatement.close();
+            resultSet.close();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(addAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(addAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         obsearch = FXCollections.observableArrayList(search);
 
@@ -258,13 +273,32 @@ public class addAppointmentController implements Initializable {
     }
 
     public void packSearch() {
-        packageSearch packageSearch1 = new packageSearch(1, "Simple pack");
-        packageSearch packageSearch2 = new packageSearch(2, "Dark Pack");
-        packageSearch packageSearch3 = new packageSearch(3, "Bridal Pack");
+//        packageSearch packageSearch1 = new packageSearch(1, "Simple pack");
+//        packageSearch packageSearch2 = new packageSearch(2, "Dark Pack");
+//        packageSearch packageSearch3 = new packageSearch(3, "Bridal Pack");
 
-        search1.add(packageSearch1);
-        search1.add(packageSearch2);
-        search1.add(packageSearch3);
+        try{
+            Connection connection = DBConnection.getDBConnection();
+            String query = "SELECT * FROM package_table";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                packageSearch packageSearch1 = new packageSearch(resultSet.getInt("PackageId"),resultSet.getString("packageName"),resultSet.getDouble("PackagePrice"));
+                search1.add(packageSearch1);
+                
+            }
+            preparedStatement.close();
+            resultSet.close();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(addAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(addAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        search1.add(packageSearch1);
+//        search1.add(packageSearch2);
+//        search1.add(packageSearch3);
 
         obsearch1 = FXCollections.observableArrayList(search1);
 
@@ -272,34 +306,45 @@ public class addAppointmentController implements Initializable {
     }
 
     public void servicesSearch() {
-        serviceSearch serviceSearch1 = new serviceSearch(1, "Hair straightening");
-        serviceSearch serviceSearch2 = new serviceSearch(2, "Nail Polishing");
-        serviceSearch serviceSearch3 = new serviceSearch(3, "Oil treatment");
-        serviceSearch serviceSearch4 = new serviceSearch(4, "Eyebrow");
-        serviceSearch serviceSearch5 = new serviceSearch(5, "Tonic treatment");
-        serviceSearch serviceSearch6 = new serviceSearch(6, "Ete treatment");
-        serviceSearch serviceSearch7 = new serviceSearch(7, "Dandruff Treatment");
-        serviceSearch serviceSearch8 = new serviceSearch(8, "Hair colouring");
-        serviceSearch serviceSearch9 = new serviceSearch(9, "Manicure");
-        serviceSearch serviceSearch10 = new serviceSearch(10, "Pedicure");
-
-        search2.add(serviceSearch1);
-        search2.add(serviceSearch2);
-        search2.add(serviceSearch3);
-        search2.add(serviceSearch4);
-        search2.add(serviceSearch5);
-        search2.add(serviceSearch6);
-        search2.add(serviceSearch7);
-        search2.add(serviceSearch8);
-        search2.add(serviceSearch9);
-        search2.add(serviceSearch10);
-
+        
+        try{
+            Connection connection = DBConnection.getDBConnection();
+            String query = "SELECT * FROM service_table";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                serviceSearch serviceSearch1 = new serviceSearch(resultSet.getInt("ServiceId"),resultSet.getString("ServiceName"),resultSet.getDouble("ServicePrice"));
+                search2.add(serviceSearch1);
+                
+            }
+            preparedStatement.close();
+            resultSet.close();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(addAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(addAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         obsearch2 = FXCollections.observableArrayList(search2);
 
         service.setItems(obsearch2);
 
     }
-
+    @FXML
+    public void onClickService(ActionEvent event){
+        double sprice;
+        if(service.getSelectionModel().isEmpty())
+            sprice = 0;
+        else
+            sprice = service.getSelectionModel().getSelectedItem().getPrice();
+        double pprice;
+        if(searchPackage.getSelectionModel().isEmpty())
+            pprice = 0;
+        else
+            pprice = searchPackage.getSelectionModel().getSelectedItem().getPrice();
+        tot.setText(String.valueOf(sprice+pprice));
+    }
     public void search(ActionEvent event) {
         String keyword = apid.getText();
 

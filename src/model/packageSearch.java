@@ -14,10 +14,16 @@ public class packageSearch {
     private String packageName;
    /* private String serviceName;
     private double price;*/
+    private double price;
 
-    public packageSearch(int packageId , String packageName) {
+    public packageSearch(int packageId , String packageName,double price) {
    this.packageId = packageId;
    this.packageName = packageName;
+   this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public int getPackageId() {

@@ -12,11 +12,17 @@ package model;
 public class serviceSearch {
      private int serviceId;
      private String serviceName;
+     private double price;
 
      
-      public serviceSearch(int serviceId, String serviceName) {
+      public serviceSearch(int serviceId, String serviceName,double price) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public int getServiceId() {
