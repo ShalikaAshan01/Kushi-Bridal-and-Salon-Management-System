@@ -7,7 +7,11 @@ package Controller;
 
 import static Controller.createInvoiceController.TITLE;
 import Utils.DBConnection;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,6 +47,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.serviceModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import org.apache.log4j.BasicConfigurator;
 /**
  *
@@ -484,6 +497,31 @@ public class addServiceController implements Initializable {
     @FXML
     private void Reset(ActionEvent event) {
          cleanfield();
+    }
+    @FXML
+    public void genarateReport(ActionEvent event) throws JRException, FileNotFoundException, ClassNotFoundException, SQLException{
+                    BasicConfigurator.configure();
+            
+            String path = "src\\views\\Reports\\Service.jrxml";
+            InputStream input = new FileInputStream(new File(path));
+            
+            String query = "select * from service_table";
+            
+            JRDesignQuery jrquery = new JRDesignQuery();
+            jrquery.setText(query);
+            
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            
+            jasperDesign.setQuery(jrquery);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getDBConnection());
+            
+             //File pdf = File.createTempFile("D\\aa", ".pdf");
+             //JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
+             
+             JasperViewer viewer = new JasperViewer(jasperPrint, false);
+             ((Node) (event.getSource())).getScene().getWindow().hide();
+             viewer.setVisible(true);
     }
     
     

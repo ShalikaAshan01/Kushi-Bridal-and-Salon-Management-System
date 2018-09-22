@@ -62,7 +62,7 @@
       <ComboBox fx:id="combo3" layoutX="190.0" layoutY="504.0" prefWidth="150.0" promptText="Service 3" />
       <JFXButton fx:id="btn_update" layoutX="198.0" layoutY="638.0" mnemonicParsing="false" onAction="#updatePackage" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #006400;" text="Update" textFill="WHITE" />
       <TextField fx:id="colpid" layoutX="190.0" layoutY="341.0" prefHeight="25.0" prefWidth="160.0" />
-      <JFXButton fx:id="report" layoutX="803.0" layoutY="189.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #00008B;" text="GENARATE REPORT" textFill="WHITE">
+      <JFXButton fx:id="report" layoutX="803.0" layoutY="189.0" mnemonicParsing="false" onAction="#genarateReport" prefHeight="44.0" prefWidth="182.0" style="-fx-background-color: #00008B;" text="GENARATE REPORT" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></JFXButton>

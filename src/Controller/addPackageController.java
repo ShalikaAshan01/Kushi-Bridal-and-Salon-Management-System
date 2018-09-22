@@ -9,8 +9,11 @@ import static Controller.createInvoiceController.TITLE;
 import Utils.DBConnection;
 import com.sun.javaws.exceptions.JreExecException;
 import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,6 +51,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JFrame;
 import model.packageModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import org.apache.log4j.BasicConfigurator;
 
 
 /**
@@ -648,8 +661,33 @@ public class addPackageController implements Initializable{
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+        @FXML
+    public void genarateReport(ActionEvent event) throws JRException, FileNotFoundException, ClassNotFoundException, SQLException{
+                    BasicConfigurator.configure();
+            
+            String path = "src\\views\\Reports\\Package.jrxml";
+            InputStream input = new FileInputStream(new File(path));
+            
+            String query = "select * from package_table";
+            
+            JRDesignQuery jrquery = new JRDesignQuery();
+            jrquery.setText(query);
+            
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            
+            jasperDesign.setQuery(jrquery);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getDBConnection());
+            
+             //File pdf = File.createTempFile("D\\aa", ".pdf");
+             //JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(pdf));
+             
+             JasperViewer viewer = new JasperViewer(jasperPrint, false);
+             ((Node) (event.getSource())).getScene().getWindow().hide();
+             viewer.setVisible(true);
+    }
     
-        //for navigation bar
+   //for navigation bar
     @FXML
     public void viewAppointmentUIb(ActionEvent event) {
         try {
@@ -687,7 +725,23 @@ public class addPackageController implements Initializable{
 
     @FXML
     public void viewPackageUIb(ActionEvent event) {
-        
+        try {
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addPackage.fxml"));
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            //    stage.setAlwaysOnTop(true);
+            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
+            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
+            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
+            stage.setTitle(TITLE);
+            stage.setMaximized(true);
+            stage.show();
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
