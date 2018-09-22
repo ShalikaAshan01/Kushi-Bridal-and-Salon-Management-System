@@ -861,7 +861,7 @@ public class createInvoiceController implements Initializable {
     @FXML
     public void viewPackageUIb(ActionEvent event) {
         try {
-            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addService.fxml"));
+            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/addPackage.fxml"));
             Stage stage = new Stage();
             //    stage.setAlwaysOnTop(true);
             Scene scene = new Scene(root);
