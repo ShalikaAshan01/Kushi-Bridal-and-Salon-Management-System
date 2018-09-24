@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="957.0" prefWidth="1711.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.FXMLbankAccountsController">
+   <children>
+      <ScrollPane prefHeight="999.0" prefWidth="1711.0">
+         <content>
+            <AnchorPane prefHeight="958.0" prefWidth="1718.0" style="-fx-background-color: #1F1C2C;">
+               <children>
+                  <HBox prefHeight="114.0" prefWidth="1710.0" spacing="2.0">
+                     <children>
+                        <Button fx:id="home" mnemonicParsing="false" prefHeight="114.0" prefWidth="254.0" style="-fx-background-color: #006400;" text="HOME" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="appointment" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #006400;" text="APPOINTMENT" textFill="#fffafa">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="customer" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #006400;" text="CUSTOMER" textFill="#fffafa">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="packages" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #006400;" text="PACKAGES" textFill="#fffafa">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="payment" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #006400;" text="PAYEMENT" textFill="#fffafa">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="employee" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #006400;" text="EMPLOYEE" textFill="#fffafa">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="suplier" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #006400;" text="SUPPLIERS" textFill="#fffafa">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="finance" layoutX="1479.0" layoutY="10.0" mnemonicParsing="false" prefHeight="114.0" prefWidth="252.0" style="-fx-background-color: #1E90FF;" text="FINANCE">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <AnchorPane layoutY="126.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="1711.0" style="-fx-background-color: #1E90FF;">
+                     <children>
+                        <Text layoutX="34.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FINANCIAL MANAGEMENT" textAlignment="CENTER" wrappingWidth="444.60595703125">
+                           <font>
+                              <Font name="System Bold" size="33.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="Button1" layoutX="233.0" layoutY="310.0" mnemonicParsing="false" onAction="#incomeAction" prefHeight="51.0" prefWidth="154.0" style="-fx-background-color: #00008B;" text="INCOME" textFill="WHITE" />
+                  <Button fx:id="Button2" layoutX="781.0" layoutY="312.0" mnemonicParsing="false" onAction="#PTAction" prefHeight="51.0" prefWidth="154.0" style="-fx-background-color: #00008B;" text="PROFIT/LOSE" textFill="WHITE" />
+                  <Button fx:id="Button3" layoutX="1066.0" layoutY="313.0" mnemonicParsing="false" onAction="#bankAction" prefHeight="51.0" prefWidth="154.0" style="-fx-background-color: #00008B;" text="BANK ACCOUNTS" textFill="WHITE" />
+                  <Button fx:id="Button4" layoutX="501.0" layoutY="310.0" mnemonicParsing="false" onAction="#expanseAction" prefHeight="51.0" prefWidth="154.0" style="-fx-background-color: #00008B;" text="EXPANSE" textFill="WHITE" />
+                  <Button fx:id="Button5" layoutX="1370.0" layoutY="313.0" mnemonicParsing="false" onAction="#reportAction" prefHeight="51.0" prefWidth="154.0" style="-fx-background-color: #00008B;" text="REPORT" textFill="WHITE" />
+                  <Separator layoutX="175.0" layoutY="411.0" prefHeight="22.0" prefWidth="1438.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="185.0" layoutY="438.0" prefHeight="77.0" prefWidth="232.0" text="BANK ACCOUNTS" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" underline="true">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="99.0" layoutY="501.0" prefHeight="68.0" prefWidth="186.0" text="BANK " textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="97.0" layoutY="564.0" prefHeight="68.0" prefWidth="181.0" text="BRANCH" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="BN" layoutX="363.0" layoutY="514.0" prefHeight="39.0" prefWidth="404.0" />
+                  <Label layoutX="98.0" layoutY="633.0" prefHeight="68.0" prefWidth="236.0" text="ACCOUNT NUMBER" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="table" layoutX="804.0" layoutY="437.0" prefHeight="498.0" prefWidth="874.0">
+                     <columns>
+                        <TableColumn fx:id="ba" prefWidth="213.5999755859375" text="BANK" />
+                        <TableColumn fx:id="br" prefWidth="189.60003662109375" text="BRANCH" />
+                        <TableColumn fx:id="acn" prefWidth="235.199951171875" text="ACCOUNT NUMBER" />
+                        <TableColumn fx:id="ach" prefWidth="236.8001708984375" text="ACCOUNT HOLDER" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="99.0" layoutY="705.0" prefHeight="68.0" prefWidth="236.0" text="ACCOUNT HOLDER" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="Button6" layoutX="364.0" layoutY="800.0" mnemonicParsing="false" onAction="#addAccAction" prefHeight="42.0" prefWidth="136.0" text="ADD BANK ACCOUNT" />
+                  <Button fx:id="Button7" layoutX="630.0" layoutY="800.0" mnemonicParsing="false" onAction="#tranAction" prefHeight="42.0" prefWidth="136.0" text="TRANSECTIONS" />
+                  <TextField fx:id="BR" layoutX="364.0" layoutY="580.0" prefHeight="39.0" prefWidth="404.0" />
+                  <TextField fx:id="ACN" layoutX="363.0" layoutY="649.0" prefHeight="39.0" prefWidth="404.0" />
+                  <TextField fx:id="ACH" layoutX="363.0" layoutY="719.0" prefHeight="39.0" prefWidth="403.0" />
+                  <Button fx:id="Button8" layoutX="631.0" layoutY="880.0" mnemonicParsing="false" onAction="#loadTable" prefHeight="42.0" prefWidth="136.0" text="LOAD TABLE" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</StackPane>

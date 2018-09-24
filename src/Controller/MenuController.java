@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
@@ -109,16 +110,11 @@ public class MenuController implements Initializable {
     @FXML
     public void viewInvoice(ActionEvent event) {
         try {
-            AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("/views/viewInvoices.fxml"));
-            Stage stage = new Stage();
-            //    stage.setAlwaysOnTop(true);
-            Scene scene = new Scene(root);
-            //        stage.resizableProperty().setValue(Boolean.FALSE);//disable maximize btn
-            //stage.initStyle(StageStyle.UTILITY);//disable mini,max,e
-            //stage.initStyle(StageStyle.UNDECORATED);//hide all button
-            stage.setScene(scene);
-            stage.setTitle(title);
-            stage.show();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/FXMLIncome.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));  
+        stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
 
             
